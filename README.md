@@ -11,15 +11,25 @@ Who?
 - aircheck
 - open source work for knockout, ember, angular-ui?
 
+Where did this talk come from?
+- When I started workong on the store manager project I discovered at a highlevel it was very similar to netchef
+  - data binding framework
+  - lots and lots of tables (for tabular data)
+  - REST API on the back end. (working with json, get, put, post and such)
+- I started noticeing silimaraties between ko and angular in what do do right and worng
+
 What is data binding?
 - Libs: ko, angular, ember, ractive, meteor
 - MVC, MVVM, MVP
 - Model
 - View
 - ViewModel/Controller/$scope
-- asdf
+- why is 
 - don't put logic im templates (ember does it right)
 - Templates providing arguments to functions is useful.
   - ko makes it hard (anomous functions in templates)
   - angular makes it easy
   - ember make it easy (and impossible to do wrong)
+  - 
+
+I love data binding
