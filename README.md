@@ -10,6 +10,7 @@ Who?
 - Store Manager for ruelala
 - aircheck
 - open source work for knockout, ember, angular-ui?
+
 What is data binding?
 - Libs: ko, angular, ember, ractive, meteor
 - MVC, MVVM, MVP
