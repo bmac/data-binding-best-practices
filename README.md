@@ -30,6 +30,9 @@ What is data binding?
   - ko makes it hard (anomous functions in templates)
   - angular makes it easy
   - ember make it easy (and impossible to do wrong)
-  - 
 
 I love data binding
+
+Critiques of data binding
+- look like onclick handlers
+  - http://egghead.io/lessons/angularjs-an-alternative-approach-to-controllers
