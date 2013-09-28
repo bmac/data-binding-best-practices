@@ -24,7 +24,8 @@ What is data binding?
 - MVC, MVVM, MVP
 - Model
 - View
-- ViewModel/Controller/$scope
+- ViewModel/Controller/$scope 
+  - Yehuda Katz calls this a Presentation Model
 - why is 
 - don't put logic im templates (ember does it right)
 - Templates providing arguments to functions is useful.
@@ -38,6 +39,8 @@ Backbone does all that!
 - backbone does provide good patterns and observing hooks
 - too much logic happens in views (update both models and dom)
 - backbone encourage smaller, more templates
+
+Presentation
 
 Critiques of data binding
 - look like onclick handlers
