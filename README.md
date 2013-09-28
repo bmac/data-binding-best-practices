@@ -34,6 +34,11 @@ What is data binding?
 
 I love data binding
 
+Backbone does all that!
+- backbone does provide good patterns and observing hooks
+- too much logic happens in views (update both models and dom)
+- backbone encourage smaller, more templates
+
 Critiques of data binding
 - look like onclick handlers
   - http://egghead.io/lessons/angularjs-an-alternative-approach-to-controllers
