@@ -19,6 +19,7 @@ Where did this talk come from?
 - I started noticeing silimaraties between ko and angular in what do do right and worng
 
 What is data binding?
+- History. flex, wpf, apple kvo, and many more
 - Libs: ko, angular, ember, ractive, meteor
 - MVC, MVVM, MVP
 - Model
