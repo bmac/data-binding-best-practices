@@ -23,6 +23,7 @@ I love data binding
 - Admittedly not for everything
 - Great for applications that have complex UI requirements
   - forms, validation (enterprize apps)
+  - admin tools
   - managing both touch and pointer based interactions
   - WebRTC
   - UIs that have to respond to realtime data changes
