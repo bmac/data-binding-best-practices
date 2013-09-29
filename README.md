@@ -32,7 +32,6 @@ I love data binding
 - What is data binding?
   - Data binding is the process that establishes a connection between the application UI and business logic.
   - when the data changes its value, the elements that are bound to the data reflect changes automatically.
-  - Simple example
 - Data bindings is not a new concept
   - WPF
   - flex
@@ -46,6 +45,17 @@ I love data binding
   - Meteor (2011)
   - Ractive (Jul 31, 2012)
   - Others
+- Examples
+  - knockout vm
+  - angular controller
+  - ember controller
+  - knockout data-bind syntax
+  - angular ng syntax (directives)
+  - ember componet syntax
+    - ember has views, components, handlebars helpers
+    - views and components have some small differences but they are not interetsing in the context of this talk
+    - handlebars let you generate html and text but don't respont to events so I will mostly ignore them
+    - my ember examples will focus on components because they look the most like angular and ko's syntax
 - MVC, MVVM, MVP
 - Model
   - Persisted state
