@@ -18,6 +18,16 @@ Where did this talk come from?
   - REST API on the back end. (working with json, get, put, post and such)
 - I started noticeing silimaraties between ko and angular in what do do right and worng
 
+I love data binding
+- I think you should use it
+- Admittedly not for everything
+- Great for applications that have complex UI requirements
+  - forms, validation (enterprize apps)
+  - managing both touch and pointer based interactions
+  - WebRTC
+  - UIs that have to respond to realtime data changes
+  - Any sort of complext dom manipulation in response to data
+
 - What is data binding?
   - Data binding is the process that establishes a connection between the application UI and business logic.
   - when the data changes its value, the elements that are bound to the data reflect changes automatically.
@@ -37,8 +47,13 @@ Where did this talk come from?
   - Others
 - MVC, MVVM, MVP
 - Model
+  - Persisted state
 - View
+  - The DOM
 - ViewModel/Controller/$scope 
+  - A place to store not persisted state 
+  - computed state
+  - Usually works with the model
   - Yehuda Katz calls this a Presentation Model
 - why is 
 - don't put logic im templates (ember does it right)
@@ -47,7 +62,6 @@ Where did this talk come from?
   - angular makes it easy
   - ember make it easy (and impossible to do wrong)
 
-I love data binding
 
 Backbone does all that!
 - backbone does provide good patterns and observing hooks
