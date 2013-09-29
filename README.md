@@ -18,9 +18,23 @@ Where did this talk come from?
   - REST API on the back end. (working with json, get, put, post and such)
 - I started noticeing silimaraties between ko and angular in what do do right and worng
 
-What is data binding?
-- History. flex, wpf, apple kvo, and many more
-- Libs: ko, angular, ember, ractive, meteor
+- What is data binding?
+  - Data binding is the process that establishes a connection between the application UI and business logic.
+  - when the data changes its value, the elements that are bound to the data reflect changes automatically.
+  - Simple example
+- Data bindings is not a new concept
+  - WPF
+  - flex
+  - apple uses the term key value observation
+  - others
+- Popularular JavaScript data binding libraries
+  - Knockout (July 5, 2010)
+  - Angular (late 2009)
+  - Ember (2011)
+    - Sproutcore (2007)
+  - Meteor (2011)
+  - Ractive (Jul 31, 2012)
+  - Others
 - MVC, MVVM, MVP
 - Model
 - View
