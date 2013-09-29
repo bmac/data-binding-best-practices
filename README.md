@@ -56,12 +56,38 @@ I love data binding
   - Usually works with the model
   - Yehuda Katz calls this a Presentation Model
 - why is 
-- don't put logic im templates (ember does it right)
-- Templates providing arguments to functions is useful.
-  - ko makes it hard (anomous functions in templates)
-  - angular makes it easy
-  - ember make it easy (and impossible to do wrong)
+- 
+## Best Practices
+- Logic in templates is evil
+  - ember doesn't let you do this/ ember gets this 100% right
+  - However, Templates providing arguments to functions is useful.
+    - ko makes it hard (anomous functions in templates)
+    - angular makes it easy
+    - ember make it easy (and impossible to do wrong)
+- Business/Application logic should operate on JavaScript objects not the dom
+  - Use a Presentation Model for state / computed state
+  - Use service modules for other logic
+  - It may be tempting to render state in the dom initially on the server to avoid a flash of unstyled content
+    - don't
+    - you end of maintaining 2 presentation code bases
+    - googlebot doesn't care if you app looks pretty
+      - when rendering for googlebot just write something that is functional and generic
+- Its tempting to put everything in the Presentation Model. Don't.
+  - state (good)
+  - logic (sometimes needed to expose to the UI)
+    - often you need to expose functions on the presentation model to the bindings
+    - They should look like pass current state off to a service module and update state based on the result
+    - Lessons learned form the server side world still apply here
+  - persistance logic (bad try to pull this out if you can)
 
+- DOM manipulation allways happens in bindings, directives, views
+  - jquery in controllers is bad
+  - If you are using a legacy widget you may want to expose state as observables
+  - 
+- Please use a module system ES6, require, ect
+  - If you are following these best practices you app is complicated enought to need one
+  - Without one its really easy to create circular dependencies in JavaScript
+ 
 
 Backbone does all that!
 - backbone does provide good patterns and observing hooks
