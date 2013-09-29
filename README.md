@@ -100,6 +100,9 @@ I love data binding
   - Connecting presentation and behavior has to be done somewhere
     - Declarative templating is useful for debugging and understanding code
     - As mentioned before having logic in the templates is still bad
+  - Separating content from presentation matters.
+    - For documents.
+    - Applications are not documents.
   - Web components will have declarative syntax?
 
 Backbone does all that!
