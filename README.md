@@ -89,6 +89,13 @@ I love data binding
   - If you are following these best practices you app is complicated enought to need one
   - Without one its really easy to create circular dependencies in JavaScript
  
+## Critiques
+- <a href=”” ng-click=”doSomething()”> looks a lot like <a href=”#” onclick=”doSomething()”>
+  - old style onclick put doSomething in the global scope
+  - Connecting presentation and behavior has to be done somewhere
+    - Declarative templating is useful for debugging and understanding code
+    - As mentioned before having logic in the templates is still bad
+  - Web components will have declarative syntax?
 
 Backbone does all that!
 - backbone does provide good patterns and observing hooks
