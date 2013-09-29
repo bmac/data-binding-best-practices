@@ -21,6 +21,14 @@ Where did this talk come from?
 I love data binding
 - I think you should use it
 - Admittedly not for everything
+- Browsers are getting smarter 
+  - webrtc 
+  - d3 
+  - canvas
+- As developers we are being asked to deliver application that respond to the user directly. Jquery valudate isnt enough features are needed to compete with competitors or supercede them.
+Exciting time for the web. We can finally build uis to compete with native but still provide the advantages of the web. sometimes we are competing w ourselves. Mobile and especially tablets are forc8ng tcos to invest in rewriting legacy applications.
+List legacy frameworks
+- Competing w application frameworks not web frameworks
 - Great for applications that have complex UI requirements
   - forms, validation (enterprize apps)
   - admin tools
