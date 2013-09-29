@@ -49,6 +49,9 @@ I love data binding
 - MVC, MVVM, MVP
 - Model
   - Persisted state
+  - Usually ridged and defined on the server
+  - Exposed to the front end as a JSON object
+  - Usually exposed as a REST api
 - View
   - The DOM
 - ViewModel/Controller/$scope 
@@ -56,7 +59,8 @@ I love data binding
   - computed state
   - Usually works with the model
   - Yehuda Katz calls this a Presentation Model
-- why is 
+- Template?
+- Services?
 - 
 ## Best Practices
 - Logic in templates is evil
