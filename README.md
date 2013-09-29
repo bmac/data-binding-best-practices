@@ -61,7 +61,8 @@ I love data binding
   - Yehuda Katz calls this a Presentation Model
 - Template?
 - Services?
-- 
+- Routing?
+
 ## Best Practices
 - Logic in templates is evil
   - ember doesn't let you do this/ ember gets this 100% right
