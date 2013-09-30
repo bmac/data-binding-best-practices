@@ -65,22 +65,36 @@ List legacy frameworks
     - views and components have some small differences but they are not interetsing in the context of this talk
     - handlebars let you generate html and text but don't respont to events so I will mostly ignore them
     - my ember examples will focus on components because they look the most like angular and ko's syntax
-- MVC, MVVM, MVP
+- Patterns that are starting to emerge
+  - ViewModel/Controller/$scope 
+    - A place to store not persisted state 
+    - computed state
+    - Usually works with the model
+    - Yehuda Katz calls this a Presentation Model
+  - Template
+    - The DOM
+    - Script tags
+    - html
+    - binds data to the dom
+    - sets up event handlers?
+    - Composes? Arranges? the bindings
+  - The binding
+    - ko binding
+    - angular directive
+    - ember component
+    - Responsibility
+      - Manipulate the dom
+      - Capture browser events
+Whats Missing?
 - Model
   - Persisted state
   - Usually ridged and defined on the server
   - Exposed to the front end as a JSON object
   - Usually exposed as a REST api
-- View
-  - The DOM
-- ViewModel/Controller/$scope 
-  - A place to store not persisted state 
-  - computed state
-  - Usually works with the model
-  - Yehuda Katz calls this a Presentation Model
-- Template?
-- Services?
-- Routing?
+- Something to hook setup the Presentation state
+- Routing
+- Services
+- MVC, MVVM, MVP?
 
 ## Best Practices
 - Separation of concern - (data, logic and UI code all live in different areas)
