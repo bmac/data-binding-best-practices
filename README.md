@@ -52,6 +52,7 @@ List legacy frameworks
     - Sproutcore (2007)
   - Meteor (2011)
   - Ractive (Jul 31, 2012)
+  - Polymer (Oct, 2012)
   - Others
 - Examples
   - knockout vm
@@ -113,7 +114,7 @@ List legacy frameworks
   - Without one its really easy to create circular dependencies in JavaScript
  
 ## Critiques
-- <a href=”” ng-click=”doSomething()”> looks a lot like <a href=”#” onclick=”doSomething()”>
+- `<a href=”” ng-click=”doSomething()”>` looks a lot like `<a href=”#” onclick=”doSomething()”>`
   - old style onclick put doSomething in the global scope
   - Connecting presentation and behavior has to be done somewhere
     - Declarative templating is useful for debugging and understanding code
