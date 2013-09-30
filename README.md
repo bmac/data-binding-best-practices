@@ -83,6 +83,7 @@ List legacy frameworks
 - Routing?
 
 ## Best Practices
+- Separation of concern - (data, logic and UI code all live in different areas)
 - Logic in templates is evil
   - ember doesn't let you do this/ ember gets this 100% right
   - However, Templates providing arguments to functions is useful.
@@ -104,14 +105,17 @@ List legacy frameworks
     - They should look like pass current state off to a service module and update state based on the result
     - Lessons learned form the server side world still apply here
   - persistance logic (bad try to pull this out if you can)
-
 - DOM manipulation allways happens in bindings, directives, views
   - jquery in controllers is bad
   - If you are using a legacy widget you may want to expose state as observables
-  - 
+  - More composable because of forced seperation?
+- Templating and bindings
+  - Translate actions to intent
+  - translate data to display values
 - Please use a module system ES6, require, ect
   - If you are following these best practices you app is complicated enought to need one
   - Without one its really easy to create circular dependencies in JavaScript
+- Testability - (separating data, logic, UI code makes it easier to write good unit tests)
  
 ## Critiques
 - `<a href=”” ng-click=”doSomething()”>` looks a lot like `<a href=”#” onclick=”doSomething()”>`
