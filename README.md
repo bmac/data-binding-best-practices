@@ -95,6 +95,9 @@ Whats Missing?
 - Routing
 - Services
 - MVC, MVVM, MVP?
+DOM --> events --> binding --> function --> presentation model --> services
+DOM <-- manipulated <-- binding <-- observes state <-- presentation model 
+
 
 ## Best Practices
 - Separation of concern - (data, logic and UI code all live in different areas)
@@ -141,15 +144,21 @@ Whats Missing?
     - For documents.
     - Applications are not documents.
   - Web components will have declarative syntax?
-- performance
+- Performance
+  - This has some truth
+  - these frameworks are big
+  - have overhead
+  - However,
+  - Let a framework worry about memory leaks
+  - development speed
+  - complexity
+- Complex
+  - Apps are complex
+  - Feature creep
+- Different from jquery
+  - learn how to think about manipulating data and not the dom
 
 Backbone does all that!
 - backbone does provide good patterns and observing hooks
 - too much logic happens in views (update both models and dom)
 - backbone encourage smaller, more templates
-
-Presentation
-
-Critiques of data binding
-- look like onclick handlers
-  - http://egghead.io/lessons/angularjs-an-alternative-approach-to-controllers
