@@ -123,6 +123,7 @@ List legacy frameworks
     - For documents.
     - Applications are not documents.
   - Web components will have declarative syntax?
+- performance
 
 Backbone does all that!
 - backbone does provide good patterns and observing hooks
