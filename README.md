@@ -22,6 +22,7 @@ I love data binding
 - I think you should use it
 - Admittedly not for everything
 - Browsers are getting smarter 
+  - HTML5
   - webrtc 
   - d3 
   - canvas
