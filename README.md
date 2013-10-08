@@ -54,13 +54,18 @@ List legacy frameworks
   - Meteor (2011)
   - Ractive (Jul 31, 2012)
   - Polymer (Oct, 2012)
+  - https://github.com/appneta/tbone
   - Others
 - Examples
   - knockout vm
     - knockout recomputes the dependency tree every time a computed in run
+    - wraps values in functions
   - angular controller
+    - dirty checking
   - ember controller
     - ember requires the developer to specify the dependencies (performance)
+    - get, set function
+  - tbone (model is a function) ?
   - knockout data-bind syntax
   - angular ng syntax (directives)
   - ember componet syntax
