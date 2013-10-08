@@ -57,8 +57,10 @@ List legacy frameworks
   - Others
 - Examples
   - knockout vm
+    - knockout recomputes the dependency tree every time a computed in run
   - angular controller
   - ember controller
+    - ember requires the developer to specify the dependencies (performance)
   - knockout data-bind syntax
   - angular ng syntax (directives)
   - ember componet syntax
