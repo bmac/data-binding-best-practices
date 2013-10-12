@@ -17,7 +17,7 @@ Where did this talk come from?
   - lots and lots of tables (for tabular data)
   - REST API on the back end. (working with json, get, put, post and such)
 - I started noticeing silimaraties between ko and angular in what do do right and worng
-
+Open web?
 I love data binding
 - I think you should use it
 - Admittedly not for everything
