@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8">
 
-    <title>reveal.js - The HTML Presentation Framework</title>
+    <title>Data Binding Best Practices</title>
 
-    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-    <meta name="author" content="Hakim El Hattab">
+    <meta name="description" content="A presentation on the best practices that can be used in knockout, angular and ember">
+    <meta name="author" content="Brendan McLoughlin">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -76,25 +76,17 @@
             <li>UIs that have to respond to realtime data changes</li>
             <li>Any sort of complext dom manipulation in response to data</li>
           </ul>
-          What do people say?
-          <ul>
-            <li>Great for applications that have complex UI requirements</li>
-            <li>Competing with native application frameworks</li>
-            <li>WebRTC, D3, validaton, worflows (enterprize apps)</li>
-            <li>Inventory Tracking for Ecommerce - Angular</li>
-            <li>WebRTC App - Ember</li>
-          </ul>
         </section>
 
         <section>
           <h2>Some people don't share my love</h2>
-          <h3>Concerns</h3>
+          <h3>Problems</h3>
           <ul>
             <li>"Over engineered and non obvious"</li>
             <li>"Think in (angular|ember|knockout)"</li>
             <li>Can't use native primitives; have to do things the framework way</li>
           </ul>
-          <h3>Address these concerns</h3>
+          <h3></h3>
           <ul>
             <li>Competing with native application frameworks</li>
             <li>Think about manupulating data not the DOM</li>
@@ -127,40 +119,62 @@
           </ul>
         </section>
 
-        <section>
-          <h2>Point of View</h2>
-          <p>
-            Press <strong>ESC</strong> to enter the slide overview.
-          </p>
-          <p>
-            Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-          </p>
+        <section data-markdown>
+          <script type="text/template">
+            ## How do you data bind? Angular
+
+            ```JavaScript
+            var Controller = function($scope) {
+              $scope.name = 'foo';
+              $scope.reset = function() {
+                $scope.name = 'foo';
+              };
+              $scope.length = function() {
+                return $scope.name.length;
+              };
+            };
+            ```
+            ```html
+            <input ng-model="name" value="foo"/>
+            <button ng-click="reset()">Reset</button>
+            <div>Name: {{name}} Name Length: {{length()}} </div>
+            ```
+
+            <input class="form-control" ng-model="name" value="foo"/><button ng-click="reset()">Reset</button>
+            <div>Name: {{name}} Name Length: {{length()}} </div>
+          </script>
         </section>
 
-        <section>
-          <h2>Works in Mobile Safari</h2>
-          <p>
-            Try it out! You can swipe through the slides and pinch your way to the overview.
-          </p>
-        </section>
-
-        <section>
-          <h2>Marvelous Unordered List</h2>
-          <ul>
-            <li>No order here</li>
-            <li>Or here</li>
-            <li>Or here</li>
-            <li>Or here</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Fantastic Ordered List</h2>
-          <ol>
-            <li>One is smaller than...</li>
-            <li>Two is smaller than...</li>
-            <li>Three!</li>
-          </ol>
+        <section ng-app>
+<div ng-controller="Controller">
+<h2>How do you data bind? Angular</h2>
+<pre><div class="JavaScript perl">var Controller = function(<span class="variable">$scope</span>) {
+  <span class="variable">$scope</span>.name = <span class="string">'{{name}}'</span>;
+  <span class="variable">$scope</span>.<span class="keyword">reset</span> = function() {
+    <span class="variable">$scope</span>.name = <span class="string">'foo'</span>;
+  };
+  <span class="variable">$scope</span>.<span class="keyword">length</span> = function() {
+    <span class="keyword">return</span> <span class="variable">$scope</span>.name.<span class="keyword">length</span>;
+  };
+};</div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">ng-model</span>=<span class="value">"name"</span> <span class="attribute">value</span>=<span class="value">"{{name}}"</span>/&gt;</span>
+<span class="tag">&lt;<span class="title">button</span> <span class="attribute">ng-click</span>=<span class="value">"reset()"</span>&gt;</span>Reset<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: {<span>{</span>name}} Name Length: {<span>{</span>length()}} <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
+<p><input class="form-control" ng-model="name" value="foo"><button ng-click="reset()">Reset</button></p>
+<div>Name: {{name}} Name Length: {{length()}} </div>
+<script>
+            function Controller($scope) {
+              console.log('controller');
+              $scope.name = 'foo';
+              $scope.reset = function() {
+                $scope.name = 'foo';
+              };
+              $scope.length = function() {
+                return $scope.name.length;
+              };
+            };
+</script>
+</div>
         </section>
 
         <section data-markdown>
@@ -384,6 +398,7 @@
 
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.min.js"></script>
+    <script src="js/angular.min.js"></script>
 
     <script>
 
