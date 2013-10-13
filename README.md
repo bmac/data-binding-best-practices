@@ -141,6 +141,7 @@ DOM <-- manipulated <-- binding <-- observes state <-- presentation model
   - If you are following these best practices you app is complicated enought to need one
   - Without one its really easy to create circular dependencies in JavaScript
 - Testability - (separating data, logic, UI code makes it easier to write good unit tests)
+  - test seperatly
  
 ## Critiques
 - `<a href=”” ng-click=”doSomething()”>` looks a lot like `<a href=”#” onclick=”doSomething()”>`
