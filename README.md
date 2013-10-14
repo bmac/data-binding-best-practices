@@ -81,6 +81,7 @@ List legacy frameworks
     - computed state
     - Usually works with the model
     - Yehuda Katz calls this a Presentation Model
+    - All about state, responding to domain events, Do not put business logic here
   - Template
     - The DOM
     - Script tags
