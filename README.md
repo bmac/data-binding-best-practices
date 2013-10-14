@@ -96,6 +96,7 @@ List legacy frameworks
     - Responsibility
       - Manipulate the dom
       - Capture browser events
+      - Only place you are allowed to use jQuery or DOM APIs
 Whats Missing?
 - Model
   - Persisted state
