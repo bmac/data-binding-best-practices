@@ -19,7 +19,7 @@
 
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
-
+    <script src="js/jquery-2.0.3.min.js"></script>
     <!-- If the query includes 'print-pdf', use the PDF print sheet -->
     <script>
       document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
@@ -119,31 +119,31 @@
           </ul>
         </section>
 
-        <section data-markdown>
-          <script type="text/template">
-            ## How do you data bind? Angular
+        <!-- <section data-markdown> -->
+        <!--   <script type="text/template"> -->
+        <!--     ## How do you data bind? Angular -->
 
-            ```JavaScript
-            var Controller = function($scope) {
-              $scope.name = 'foo';
-              $scope.reset = function() {
-                $scope.name = 'foo';
-              };
-              $scope.length = function() {
-                return $scope.name.length;
-              };
-            };
-            ```
-            ```html
-            <input ng-model="name" value="foo"/>
-            <button ng-click="reset()">Reset</button>
-            <div>Name: {{name}} Name Length: {{length()}} </div>
-            ```
+        <!--     ```JavaScript -->
+        <!--     var Controller = function($scope) { -->
+        <!--       $scope.name = 'foo'; -->
+        <!--       $scope.reset = function() { -->
+        <!--         $scope.name = 'foo'; -->
+        <!--       }; -->
+        <!--       $scope.length = function() { -->
+        <!--         return $scope.name.length; -->
+        <!--       }; -->
+        <!--     }; -->
+        <!--     ``` -->
+        <!--     ```html -->
+        <!--     <input ng-model="name" value="foo"/> -->
+        <!--     <button ng-click="reset()">Reset</button> -->
+        <!--     <div>Name: {{name}} Name Length: {{length()}} </div> -->
+        <!--     ``` -->
 
-            <input class="form-control" ng-model="name" value="foo"/><button ng-click="reset()">Reset</button>
-            <div>Name: {{name}} Name Length: {{length()}} </div>
-          </script>
-        </section>
+        <!--     <input class="form-control" ng-model="name" value="foo"/><button ng-click="reset()">Reset</button> -->
+        <!--     <div>Name: {{name}} Name Length: {{length()}} </div> -->
+        <!--   </script> -->
+        <!-- </section> -->
 
         <section ng-app>
 <div ng-controller="Controller">
@@ -176,6 +176,67 @@
 </script>
 </div>
         </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Knockout
+
+            ```JavaScript
+            var ViewModel = function() {
+              this.name = ko.observable('foo');
+              this.reset = function() {
+                this.name('foo');
+              };
+              this.length = ko.computed(function() {
+                return this.name().length;
+              }, this);
+            };
+            ko.applyBindings(new ViewModel());
+            ```
+            ```html
+            <input data-bind="value: name, valueUpdate: afterkeydown" value="foo"/>
+            <button data-bind="click: reset">Reset</button>
+            <div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div>
+            ```
+
+            <input class="form-control" data-bind="value: name, valueUpdate: 'afterkeydown'" value="foo"/><button data-bind="click: reset">Reset</button>
+            <div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div>
+          </script>
+        </section>
+
+<section id="ko-example1">
+<h2>Knockout</h2>
+<pre><div class="JavaScript javascript"><span class="keyword">var</span> ViewModel = <span class="keyword">function</span>() {
+  <span class="keyword">this</span>.name = ko.observable(<span class="string">'<span data-bind="text: name"></span>'</span>);
+  <span class="keyword">this</span>.reset = <span class="keyword">function</span>() {
+    <span class="keyword">this</span>.name(<span class="string">'foo'</span>);
+  };
+  <span class="keyword">this</span>.length = ko.computed(<span class="keyword">function</span>() {
+    <span class="keyword">return</span> <span class="keyword">this</span>.name().length;
+  }, <span class="keyword">this</span>);
+};
+ko.applyBindings(<span class="keyword">new</span> ViewModel());</div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">data-bind</span>=<span class="value">"value: name, valueUpdate: 'afterkeydown'"</span> <span class="attribute">value</span>=<span class="value">"<span data-bind="text: name"></span>"</span>/&gt;</span>
+<span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-bind</span>=<span class="value">"click: reset"</span>&gt;</span>Reset<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: name"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span> 
+Name Length: <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: length"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
+<p><input class="form-control" data-bind="value: name, valueUpdate: 'afterkeydown'" value="foo"><button data-bind="click: reset">Reset</button></p>
+<div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div>
+<script>
+$(function() {
+            var ViewModel = function() {
+              this.name = ko.observable('foo');
+              this.reset = function() {
+                this.name('foo');
+              };
+              this.length = ko.computed(function() {
+                return this.name().length;
+              }, this);
+            };
+            ko.applyBindings(new ViewModel(), document.getElementById('ko-example1'));
+});
+</script>
+</section>
 
         <section data-markdown>
           <script type="text/template">
@@ -399,6 +460,7 @@
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.min.js"></script>
     <script src="js/angular.min.js"></script>
+    <script src="js/knockout-3.0.0rc.js"></script>
 
     <script>
 
