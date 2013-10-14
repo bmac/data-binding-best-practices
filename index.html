@@ -152,6 +152,7 @@
   <span class="variable">$scope</span>.name = <span class="string">'{{name}}'</span>;
   <span class="variable">$scope</span>.<span class="keyword">reset</span> = function() {
     <span class="variable">$scope</span>.name = <span class="string">'foo'</span>;
+    <span class="variable">$scope</span>.$apply();<span class="comment">// sometimes</span>
   };
   <span class="variable">$scope</span>.<span class="keyword">length</span> = function() {
     <span class="keyword">return</span> <span class="variable">$scope</span>.name.<span class="keyword">length</span>;
