@@ -147,7 +147,7 @@
 
         <section ng-app>
 <div ng-controller="Controller">
-<h2>How do you data bind? Angular</h2>
+<h2>Angular</h2>
 <pre><div class="JavaScript perl">var Controller = function(<span class="variable">$scope</span>) {
   <span class="variable">$scope</span>.name = <span class="string">'{{name}}'</span>;
   <span class="variable">$scope</span>.<span class="keyword">reset</span> = function() {
@@ -155,7 +155,7 @@
   };
   <span class="variable">$scope</span>.<span class="keyword">length</span> = function() {
     <span class="keyword">return</span> <span class="variable">$scope</span>.name.<span class="keyword">length</span>;
-  };
+  };  <span class="comment">// this.length(); => {{ length() }}</span>
 };</div></pre>
 <pre><div class="html xml"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">ng-model</span>=<span class="value">"name"</span> <span class="attribute">value</span>=<span class="value">"{{name}}"</span>/&gt;</span>
 <span class="tag">&lt;<span class="title">button</span> <span class="attribute">ng-click</span>=<span class="value">"reset()"</span>&gt;</span>Reset<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
@@ -177,32 +177,32 @@
 </div>
         </section>
 
-        <section data-markdown>
-          <script type="text/template">
-            ## Knockout
+        <!-- <section data-markdown> -->
+        <!--   <script type="text/template"> -->
+        <!--     ## Knockout -->
 
-            ```JavaScript
-            var ViewModel = function() {
-              this.name = ko.observable('foo');
-              this.reset = function() {
-                this.name('foo');
-              };
-              this.length = ko.computed(function() {
-                return this.name().length;
-              }, this);
-            };
-            ko.applyBindings(new ViewModel());
-            ```
-            ```html
-            <input data-bind="value: name, valueUpdate: afterkeydown" value="foo"/>
-            <button data-bind="click: reset">Reset</button>
-            <div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div>
-            ```
+        <!--     ```JavaScript -->
+        <!--     var ViewModel = function() { -->
+        <!--       this.name = ko.observable('foo'); -->
+        <!--       this.reset = function() { -->
+        <!--         this.name('foo'); -->
+        <!--       }; -->
+        <!--       this.length = ko.computed(function() { -->
+        <!--         return this.name().length; -->
+        <!--       }, this); -->
+        <!--     }; -->
+        <!--     ko.applyBindings(new ViewModel()); -->
+        <!--     ``` -->
+        <!--     ```html -->
+        <!--     <input data-bind="value: name, valueUpdate: afterkeydown" value="foo"/> -->
+        <!--     <button data-bind="click: reset">Reset</button> -->
+        <!--     <div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div> -->
+        <!--     ``` -->
 
-            <input class="form-control" data-bind="value: name, valueUpdate: 'afterkeydown'" value="foo"/><button data-bind="click: reset">Reset</button>
-            <div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div>
-          </script>
-        </section>
+        <!--     <input class="form-control" data-bind="value: name, valueUpdate: 'afterkeydown'" value="foo"/><button data-bind="click: reset">Reset</button> -->
+        <!--     <div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div> -->
+        <!--   </script> -->
+        <!-- </section> -->
 
 <section id="ko-example1">
 <h2>Knockout</h2>
@@ -213,7 +213,7 @@
   };
   <span class="keyword">this</span>.length = ko.computed(<span class="keyword">function</span>() {
     <span class="keyword">return</span> <span class="keyword">this</span>.name().length;
-  }, <span class="keyword">this</span>);
+    }, <span class="keyword">this</span>);  <span class="comment">// this.length(); => <span data-bind="text: length"></span></span>
 };
 ko.applyBindings(<span class="keyword">new</span> ViewModel());</div></pre>
 <pre><div class="html xml"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">data-bind</span>=<span class="value">"value: name, valueUpdate: 'afterkeydown'"</span> <span class="attribute">value</span>=<span class="value">"<span data-bind="text: name"></span>"</span>/&gt;</span>
@@ -237,6 +237,80 @@ $(function() {
 });
 </script>
 </section>
+
+        <!-- <section data-markdown> -->
+        <!--   <script type="text/template"> -->
+        <!--     ## Ember -->
+
+        <!--     ```JavaScript -->
+            <!-- var ExampleController = Ember.ObjectController.extend({ -->
+            <!--   actions: { -->
+            <!--     reset: function() { -->
+            <!--       this.set('name', 'foo'); -->
+            <!--     } -->
+            <!--   }, -->
+            <!--   name: 'foo', -->
+            <!--   length: function() { -->
+            <!--     return this.get('name').length; -->
+            <!--   }.property('name') -->
+            <!-- }; -->
+        <!--     ``` -->
+        <!--     ```html -->
+        <!--     {{input value=name }} -->
+        <!--     <button {{action 'reset'}}>Reset</button> -->
+        <!--     <div>Name: {{ name }} Name Length: {{ length }}</div> -->
+        <!--     ``` -->
+        <!--   </script> -->
+        <!--     {{input value=name class="form-control"}}<button {{action 'reset'}}>Reset</button> -->
+        <!--     <div>Name: {{ name }} Name Length: {{ length }}</div> -->
+        <!-- </section> -->
+
+<section id="ember-example">
+</section>
+<script>
+$(function() {
+  App = Ember.Application.create({
+    rootElement: '#ember-example'
+  });
+  App.Router.reopen({
+      location: 'none'
+  });
+  App.ExampleController = Ember.ObjectController.extend({
+    actions: {
+      reset: function() {
+        this.set('name', 'foo');
+       }
+     },
+     name: 'foo',
+     length: function() {
+       return this.get('name').length;
+      }.property('name') 
+    });
+});
+</script>
+<script type="text/x-handlebars">
+  {{render 'example'}}
+</script>
+  <script type="text/x-handlebars" data-template-name="example">
+<h2>Ember</h2>
+<pre><div class="JavaScript actionscript"><span class="keyword">var</span> ExampleController = Ember.ObjectController.extend({
+  actions: {
+    reset: <span class="keyword">function</span>() {
+      <span class="keyword">this</span>.<span class="keyword">set</span>(<span class="string">'name'</span>, <span class="string">'foo'</span>);
+    }
+  },
+  name: <span class="string">'{{ name }}'</span>,
+  length: <span class="keyword">function</span>() { 
+    <span class="keyword">return</span> <span class="keyword">this</span>.<span class="keyword">get</span>(<span class="string">'name'</span>).length;
+  }.property(<span class="string">'name'</span>) <span class="comment">// this.get('length'); => {{ length }}</span>
+};</div></pre>
+<pre><div class="html xml">{<span>{</span>input value=name }}
+<span class="tag">&lt;<span class="title">button</span> {<span>{</span><span class="attribute">action</span> '<span class="attribute">reset</span>'}}&gt;</span>Reset<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: {<span>{</span> name }} Name Length: {<span>{</span> length }}<span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
+{{input class="form-control" value=name }}
+<button {{action 'reset'}}>Reset</button>
+<div>Name: {{ name }} Name Length: {{ length }}</div>
+  </script>
 
         <section data-markdown>
           <script type="text/template">
@@ -461,6 +535,8 @@ $(function() {
     <script src="js/reveal.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/knockout-3.0.0rc.js"></script>
+    <script src="js/handlebars-1.0.0.js"></script>
+    <script src="js/ember.prod.js"></script>
 
     <script>
 
