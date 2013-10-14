@@ -41,6 +41,8 @@ List legacy frameworks
 - What is data binding?
   - Data binding is the process that establishes a connection between the application UI and business logic.
   - when the data changes its value, the elements that are bound to the data reflect changes automatically.
+  - html is declarative
+  - reduces boilerplate keeping html up to date
 - Data bindings is not a new concept
   - WPF
   - flex
