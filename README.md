@@ -166,6 +166,8 @@ DOM <-- manipulated <-- binding <-- observes state <-- presentation model
   - Feature creep
 - Different from jquery
   - learn how to think about manipulating data and not the dom
+- Client side only
+  - Google?
 
 Backbone does all that!
 - backbone does provide good patterns and observing hooks
