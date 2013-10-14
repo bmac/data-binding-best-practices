@@ -41,6 +41,8 @@ List legacy frameworks
 - What is data binding?
   - Data binding is the process that establishes a connection between the application UI and business logic.
   - when the data changes its value, the elements that are bound to the data reflect changes automatically.
+  - html is declarative
+  - reduces boilerplate keeping html up to date
 - Data bindings is not a new concept
   - WPF
   - flex
@@ -79,6 +81,7 @@ List legacy frameworks
     - computed state
     - Usually works with the model
     - Yehuda Katz calls this a Presentation Model
+    - All about state, responding to domain events, Do not put business logic here
   - Template
     - The DOM
     - Script tags
@@ -166,6 +169,8 @@ DOM <-- manipulated <-- binding <-- observes state <-- presentation model
   - Feature creep
 - Different from jquery
   - learn how to think about manipulating data and not the dom
+- Client side only
+  - Google?
 
 Backbone does all that!
 - backbone does provide good patterns and observing hooks
