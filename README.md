@@ -118,7 +118,7 @@ DOM <-- manipulated <-- binding <-- observes state <-- presentation model
     - ko makes it hard (anomous functions in templates)
     - angular makes it easy
     - ember make it easy (and impossible to do wrong)
-- Business/Application logic should operate on JavaScript objects not the dom
+- Business/Application/Domain logic should operate on JavaScript objects not the dom
   - Use a Presentation Model for state / computed state
   - Use service modules for other logic
   - It may be tempting to render state in the dom initially on the server to avoid a flash of unstyled content
@@ -138,7 +138,7 @@ DOM <-- manipulated <-- binding <-- observes state <-- presentation model
   - If you are using a legacy widget you may want to expose state as observables
   - More composable because of forced seperation?
 - Templating and bindings
-  - Translate actions to intent
+  - Translate DOM events to actions and intent
   - translate data to display values
 - Please use a module system ES6, require, ect
   - If you are following these best practices you app is complicated enought to need one
@@ -175,4 +175,5 @@ DOM <-- manipulated <-- binding <-- observes state <-- presentation model
 Backbone does all that!
 - backbone does provide good patterns and observing hooks
 - too much logic happens in views (update both models and dom)
+  - views aren't really reusable, composible
 - backbone encourage smaller, more templates
