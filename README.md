@@ -104,7 +104,7 @@ Whats Missing?
   - Exposed to the front end as a JSON object
   - Usually exposed as a REST api
 - Something to hook setup the Presentation state
-- Routing
+- Routing (Very imporant for the open web but not interesting in the conext of this talk)
 - Services
 - MVC, MVVM, MVP?
 DOM --> events --> binding --> function --> presentation model --> services
