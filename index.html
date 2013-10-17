@@ -145,8 +145,8 @@
         <!--   </script> -->
         <!-- </section> -->
 
-        <section ng-app>
-<div ng-controller="Controller">
+        <section ng-app="myModule">
+<section ng-controller="Controller">
 <h2>Angular</h2>
 <pre><div class="JavaScript perl">var Controller = function(<span class="variable">$scope</span>) {
   <span class="variable">$scope</span>.name = <span class="string">'{{name}}'</span>;
@@ -175,7 +175,54 @@
               };
             };
 </script>
-</div>
+</section>
+<section ng-controller="DirectiveExampleController" style="padding-top: 0px;" ><pre><div class="JavaScript php"><span class="variable">$scope</span>.price = <span class="number">{{price}}</span>; <span class="comment">//...</span>
+myModule.directive(<span class="string">'numberInput'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+  <span class="keyword">return</span> {
+    template: <span class="string">'&lt;input type="text"/&gt;'</span>,
+    restrict: <span class="string">'E'</span>,
+    <span class="keyword">require</span>: <span class="string">'ngModel'</span>,
+    link: function(<span class="variable">$scope</span>, element, attrs, modelCtrl) {
+      element.on(<span class="string">'blur'</span>, function() {
+        <span class="variable">$scope</span>.<span class="variable">$apply</span>(function() {
+          <span class="keyword">var</span> num = parseInt(element.value.replace(/,/g, <span class="string">''</span>), <span class="number">10</span>);
+          modelCtrl.<span class="variable">$modelValue</span> = num;
+        });
+      });
+
+      modelCtrl.<span class="variable">$render</span> = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        element.value = modelCtrl.<span class="variable">$modelValue</span>.toLocaleString();
+      }; <span class="comment">// missing closing braces...</span></div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">number-input</span> <span class="attribute">ng-model</span>=<span class="value">"price"</span>&gt;</span><span class="tag">&lt;/<span class="title">number-input</span>&gt;</span></div></pre>
+<number-input ng-model="price"></number-input>
+</section>
+<!--         <section data-markdown style="padding-top: 0"> -->
+<!--           <script type="text/template"> -->
+<!--             ```JavaScript -->
+<!-- $scope.price = 0; //... -->
+<!-- myModule.directive('numberInput', function () { -->
+<!--   return { -->
+<!--     template: '<input type="text"/>', -->
+<!--     restrict: 'E', -->
+<!--     require: 'ngModel', -->
+<!--     link: function($scope, element, attrs, modelCtrl) { -->
+<!--       element.on('blur', function() { -->
+<!--         $scope.$apply(function() { -->
+<!--           var num = parseInt(element.value.replace(/,/g, ''), 10); -->
+<!--           modelCtrl.$modelValue = num; -->
+<!--         }); -->
+<!--       }); -->
+
+<!--       modelCtrl.$render = function () { -->
+<!--         element.value = modelCtrl.$modelValue.toLocaleString(); -->
+<!--       }; // missing closing braces... -->
+<!--             ``` -->
+<!--             ```html -->
+<!--             <number-input ng-model="price"></number-input> -->
+<!--             ``` -->
+<!--             <input class="form-control" ng-model="name" value="0"/> -->
+<!--           </script> -->
+<!--         </section> -->
         </section>
 
         <!-- <section data-markdown> -->
@@ -313,7 +360,23 @@ $(function() {
 <div>Name: {{ name }} Name Length: {{ length }}</div>
   </script>
 
+
+        <section>
+          <table>
+            <thead>
+              <tr><td></td><td>Angular</td><td>Ember</td><td>Knockout</td></tr>
+            </thead>
+            <tbody>
+              <tr><th>Presentation Model</th><td>$scope</td><td>Controller</td><td>View Model</td></tr>
+              <tr class="fragment"><th>Template</th><td>HTML</td><td>handlebars</td><td>HTML</td></tr>
+              <tr class="fragment"><th>Binding</th><td>Directive</td><td>Component</td><td>Binding</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+
         <section data-markdown>
+
           <script type="text/template">
             ## Markdown support
 
@@ -538,6 +601,40 @@ $(function() {
     <script src="js/knockout-3.0.0rc.js"></script>
     <script src="js/handlebars-1.0.0.js"></script>
     <script src="js/ember.prod.js"></script>
+<script>
+var myModule = angular.module('myModule', []);
+myModule.directive('numberInput', function () {
+  return {
+    template: '<input type="text"/>',
+    restrict: 'E',
+    require:'ngModel',
+    link: function($scope, element, attrs, modelCtrl) {
+      var $input = element.find('input'),
+          input = $input[0];
+      window.input = input;
+      window.modelCtrl = modelCtrl;
+      $input.on('blur', function() {
+        //$scope.$apply(function() {
+          var num = parseInt(input.value.replace(/,/g, ''), 10);
+          modelCtrl.$modelValue = num;
+          $scope.price = num; 
+          modelCtrl.$render();
+          $scope.$apply();
+        //});
+      });
+
+      modelCtrl.$render = function () {
+        input.value = modelCtrl.$modelValue.toLocaleString();
+      };
+    }
+  };
+});
+
+function DirectiveExampleController($scope) {
+  $scope.price = 10000000;
+  window.$scope = $scope;
+}
+</script>
 
     <script>
 
