@@ -193,8 +193,8 @@ myModule.directive(<span class="string">'numberInput'</span>, <span class="funct
       modelCtrl.<span class="variable">$render</span> = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         element.value = modelCtrl.<span class="variable">$modelValue</span>.toLocaleString();
       }; <span class="comment">// missing closing braces...</span></div></pre>
-<pre><div class="html xml"><span class="tag">&lt;<span class="title">number-input</span> <span class="attribute">ng-model</span>=<span class="value">"price"</span>&gt;</span><span class="tag">&lt;/<span class="title">number-input</span>&gt;</span></div></pre>
-<number-input ng-model="price"></number-input>
+  <pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span> Price: <span class="tag">&lt;<span class="title">number-input</span> <span class="attribute">ng-model</span>=<span class="value">"price"</span>&gt;</span><span class="tag">&lt;/<span class="title">number-input</span>&gt;</span><span class="tag">&lt;<span class="title">/label</span>&gt;</span></div></pre>
+<label> Price:<number-input ng-model="price"></number-input></label>
 </section>
 <!--         <section data-markdown style="padding-top: 0"> -->
 <!--           <script type="text/template"> -->
@@ -251,7 +251,7 @@ myModule.directive(<span class="string">'numberInput'</span>, <span class="funct
         <!--     <div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div> -->
         <!--   </script> -->
         <!-- </section> -->
-
+<section>
 <section id="ko-example1">
 <h2>Knockout</h2>
 <pre><div class="JavaScript javascript"><span class="keyword">var</span> ViewModel = <span class="keyword">function</span>() {
@@ -284,6 +284,68 @@ $(function() {
             ko.applyBindings(new ViewModel(), document.getElementById('ko-example1'));
 });
 </script>
+</section>
+<!-- <section data-markdown> -->
+
+<!--           <script type="text/template"> -->
+<!--             ```JavaScript -->
+<!-- viewModel.price = ko.observable(100); -->
+<!-- ko.bindingHandlers.number = { -->
+<!--     init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) { -->
+<!--         var observable = valueAccessor(); -->
+<!--         element.addEventListener('change', function() { -->
+<!--            var number = parseInt(element.value.replace(/,/g, ''), 10); -->
+<!--            observable(number); -->
+<!--         }); -->
+<!--     }, -->
+<!--     update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) { -->
+<!--         var number = ko.unwrap(valueAccessor()); -->
+<!--         element.value = number.toLocalString(); -->
+<!--     }}; -->
+<!--             ``` -->
+<!-- ```html -->
+<!-- <label> Price: <input type="text" data-bind="number: price" /></label> -->
+<!-- ``` -->
+<!-- <label> Price: <input type="text" class="form-control" data-bind="number: price" /></label> -->
+
+<!--           </script> -->
+<!-- </section> -->
+<section id="ko-binding-example"><pre><div class="JavaScript javascript">viewModel.price = ko.observable(<span class="number" data-bind="text: price"></span>);
+ko.bindingHandlers.number = {
+    init: <span class="keyword">function</span>(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        <span class="keyword">var</span> observable = valueAccessor();
+        element.addEventListener(<span class="string">'change'</span>, <span class="keyword">function</span>() {
+           <span class="keyword">var</span> number = parseInt(element.value.replace(<span class="regexp">/,/g</span>, <span class="string">''</span>), <span class="number">10</span>);
+           observable(number);
+        });
+    },
+    update: <span class="keyword">function</span>(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        <span class="keyword">var</span> number = ko.unwrap(valueAccessor());
+        element.value = number.toLocaleString();
+    }};</div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span> Price: <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">data-bind</span>=<span class="value">"number: price"</span> /&gt;</span><span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
+<label> Price: <input type="text" class="form-control" data-bind="number: price"></label>
+<script>
+$(function() {
+ko.bindingHandlers.number = {
+    init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var observable = valueAccessor();
+        element.addEventListener('change', function() {
+           var number = parseInt(element.value.replace(/,/g, ''), 10);
+           observable(number);
+        });
+    },
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var number = ko.unwrap(valueAccessor());
+        element.value = number.toLocaleString();
+    }};
+var vm = {
+  price: ko.observable(100)
+};
+ko.applyBindings(vm, $('#ko-binding-example')[0]);
+});
+</script>
+</section>
 </section>
 
         <!-- <section data-markdown> -->
@@ -611,6 +673,7 @@ myModule.directive('numberInput', function () {
     link: function($scope, element, attrs, modelCtrl) {
       var $input = element.find('input'),
           input = $input[0];
+      $input.addClass('form-control');
       window.input = input;
       window.modelCtrl = modelCtrl;
       $input.on('blur', function() {
