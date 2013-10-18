@@ -146,6 +146,9 @@ Template (DOM)
   - jquery in controllers is bad
   - If you are using a legacy widget you may want to expose state as observables
   - More composable because of forced seperation?
+- Keep presentation logic as close to the dom as possible
+  - angular has filters
+  - ember has helpers
 - Templating and bindings
   - Translate DOM events to actions and intent
   - translate data to display values
