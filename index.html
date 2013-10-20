@@ -374,18 +374,26 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
         <!--     {{input value=name class="form-control"}}<button {{action 'reset'}}>Reset</button> -->
         <!--     <div>Name: {{ name }} Name Length: {{ length }}</div> -->
         <!-- </section> -->
-
+<section>
 <section id="ember-example">
+</section>
+<section id="ember-component-example">
+</section>
 </section>
 <script>
 $(function() {
-  App = Ember.Application.create({
+  AppOne = Ember.Application.create({
     rootElement: '#ember-example'
   });
-  App.Router.reopen({
+  AppOne.Router.reopen({
       location: 'none'
   });
-  App.ExampleController = Ember.ObjectController.extend({
+  AppOne.ApplicationRoute = Ember.Route.extend({
+      model: function() {
+        return {exampleOne: true};
+      }
+  });
+  AppOne.ExampleController = Ember.ObjectController.extend({
     actions: {
       reset: function() {
         this.set('name', 'foo');
@@ -397,9 +405,34 @@ $(function() {
       }.property('name') 
     });
 });
+$(function() {
+  AppTwo = Ember.Application.create({
+    rootElement: '#ember-component-example'
+  });
+  AppTwo.Router.reopen({
+      location: 'none'
+  });
+  AppTwo.ExampleBController = Ember.ObjectController.extend({
+      price: 100
+  });
+  AppTwo.NumberInputComponent = Ember.Component.extend({
+  setUpEvents: function() {
+    this.$('input').on('blur', this.updateValue.bind(this));
+  }.on('insertElement'),
+  updateValue: function() {
+    var $input = this.$('input');
+    var number = parseInt($input.val().replace(/,/g), 10);
+    this.set('value', number);
+  }
+});
+});
 </script>
 <script type="text/x-handlebars">
+  {{#if exampleOne}}
   {{render 'example'}}
+  {{else}}
+  {{render 'exampleB'}}
+  {{/if}}
 </script>
   <script type="text/x-handlebars" data-template-name="example">
 <h2>Ember</h2>
@@ -421,6 +454,29 @@ $(function() {
 <button {{action 'reset'}}>Reset</button>
 <div>Name: {{ name }} Name Length: {{ length }}</div>
   </script>
+
+<script type="text/x-handlebars" id="components/number-input">
+  <input type="text" class="form-control"/>
+</script>
+<script type="text/x-handlebars" data-template-name="exampleB">
+<h2>Ember</h2>
+<pre><div class="JavaScript coffeescript">controller.set(<span class="string">'price'</span>, <span class="number">{{ price }}</span>);
+App.NumberInputComponent = Ember.Component.extend({
+  setUpEvents: <span class="reserved">function</span>() {
+    <span class="keyword">this</span>.$(<span class="string">'input'</span>).<span class="literal">on</span>(<span class="string">'blur'</span>, <span class="keyword">this</span>.updateValue.bind(<span class="keyword">this</span>));
+  }.<span class="literal">on</span>(<span class="string">'insertElement'</span>),
+  updateValue: <span class="reserved">function</span>() {
+    <span class="reserved">var</span> $input = <span class="keyword">this</span>.$(<span class="string">'input'</span>);
+    <span class="reserved">var</span> number = parseInt($input.val().replace(<span class="regexp">/,/g</span>), <span class="number">10</span>);
+    <span class="keyword">this</span>.set(<span class="string">'value'</span>, number);
+  }
+};</div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/x-handlebars"</span> <span class="attribute">id</span>=<span class="value">"components/number-input"</span>&gt;</span><span class="tag">
+  &lt;<span class="title">input</span> type=<span class="string">"text"</span> /&gt;
+&lt;/<span class="title">script</span>&gt;</span>
+{<span>{</span>number-input value=price }}</div></pre>
+{{number-input value=price}}
+</script>
 
 
         <section>
