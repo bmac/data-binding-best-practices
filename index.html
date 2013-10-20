@@ -418,12 +418,17 @@ $(function() {
   AppTwo.NumberInputComponent = Ember.Component.extend({
   setUpEvents: function() {
     this.$('input').on('blur', this.updateValue.bind(this));
-  }.on('insertElement'),
+    this.setValue();
+  }.on('didInsertElement'),
   updateValue: function() {
     var $input = this.$('input');
     var number = parseInt($input.val().replace(/,/g), 10);
     this.set('value', number);
-  }
+  },
+  setValue: function() {
+    var $input = this.$('input');
+    $input.val(this.get('value').toLocaleString());
+  }.observes('value')
 });
 });
 </script>
@@ -462,14 +467,19 @@ $(function() {
 <h2>Ember</h2>
 <pre><div class="JavaScript coffeescript">controller.set(<span class="string">'price'</span>, <span class="number">{{ price }}</span>);
 App.NumberInputComponent = Ember.Component.extend({
-  setUpEvents: <span class="reserved">function</span>() {
+  setUp: <span class="reserved">function</span>() {
     <span class="keyword">this</span>.$(<span class="string">'input'</span>).<span class="literal">on</span>(<span class="string">'blur'</span>, <span class="keyword">this</span>.updateValue.bind(<span class="keyword">this</span>));
-  }.<span class="literal">on</span>(<span class="string">'insertElement'</span>),
+    <span class="keyword">this</span>.setValue();
+  }.<span class="literal">on</span>(<span class="string">'didInsertElement'</span>),
   updateValue: <span class="reserved">function</span>() {
     <span class="reserved">var</span> $input = <span class="keyword">this</span>.$(<span class="string">'input'</span>);
     <span class="reserved">var</span> number = parseInt($input.val().replace(<span class="regexp">/,/g</span>), <span class="number">10</span>);
     <span class="keyword">this</span>.set(<span class="string">'value'</span>, number);
-  }
+  },
+  setValue: function() {
+    <span class="reserved">var</span> $input = <span class="keyword">this</span>.$(<span class="string">'input'</span>);
+    $input.val(this.get(<span class="string">'value'</span>).toLocaleString());
+  }.observes(<span class="string">'value'</span>)
 };</div></pre>
 <pre><div class="html xml"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/x-handlebars"</span> <span class="attribute">id</span>=<span class="value">"components/number-input"</span>&gt;</span><span class="tag">
   &lt;<span class="title">input</span> type=<span class="string">"text"</span> /&gt;
