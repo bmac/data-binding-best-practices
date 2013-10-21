@@ -168,6 +168,9 @@ Template (DOM)
     - For documents.
     - Applications are not documents.
   - Web components will have declarative syntax?
+  - Backbone/jQuery model Seperates technologies but not concerns
+    - like the display logic that drives the markup is going to be intimately coupled together. 
+    - They are a cohesive unit because they’re both displaying the data.
 - Performance
   - This has some truth
   - these frameworks are big
