@@ -502,6 +502,146 @@ App.NumberInputComponent = Ember.Component.extend({
           </table>
         </section>
 
+        <section>
+          <h2>Presentation Model</h2>
+          <p>Source of Truth for Application State</p>
+          <ul>
+            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> $scope </li>
+            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Controller </li>
+            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > View Model</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Template</h2>
+          <p>Reserved for the arrangement of presentation</p>
+          <ul>
+            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> HTML </li>
+            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Handlebars </li>
+            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > HTML</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h2>Binding</h2>
+          <p>Translates DOM events into application events</p>
+          <p>Responsible for updating the state of the DOM to reflect the Presentation Model</p>
+          <ul>
+            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> Directives </li>
+            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Components/Views </li>
+            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > Binding</li>
+          </ul>
+        </section>
+
+        <section data-markdown>
+
+          <script type="text/template">
+            ## What does the archatecture look like?
+
+          </script>
+        </section>
+
+        <section data-markdown>
+
+          <script type="text/template">
+            ## Whats Missing?
+            - Business/Domain Logic?
+              - Services
+            - What sets up the Presentation model and template?
+              - Router
+            - Where does the data come from?
+              - Model
+          </script>
+        </section>
+
+
+        <section data-markdown>
+
+          <script type="text/template">
+            # Best Practices
+          </script>
+        </section>
+
+        <section data-markdown>
+
+          <script type="text/template">
+            ## Seperation Of Concerns
+            - Presnetation Model is for Data
+            - Bindings for DOM manipulation and (browser) event handeling
+            - Services for Business Logic
+            - Templates for HTML
+          </script>
+        </section>
+
+        <section data-markdown>
+
+          <script type="text/template">
+            # The Presentation Model is for State
+            - Good
+              - State Values
+              - Computed Values
+              - Simple Handlers
+            - Bad
+              - DOM Manipulation
+              - Perisitance Logic
+              - Ajax/Network logic
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Logicless Templates
+            - Logic In templates is bad
+            - Exception: Simple if else statements
+              - `if foo || bar` is bad
+            - Exception: passing arguments to handlers is ok
+              - Required for angular
+              - Easy to do in ember
+              - Hard to do in Knockout 
+          </script>
+        </section>
+
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Business Logic belongs in Serices
+            - Work with JavaScript Object not the dom
+            - Reusable
+            - Testable
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## DOM manipulation allways happens in binding
+            - This is the only place where you should see jQuery
+            - When working with legacy widgits expose dom state as observables
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Keep presentation logic as close to the dom as possible
+            - Handlebars helpers / Angular filters
+            - Only use bindings when directly responding to browser events
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Use a Module System
+            - Apps are complex
+            - Separate repsonsibilites calls for separate modules
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Unit Test
+            - Test Seperatly
+          </script>
+        </section>
 
         <section data-markdown>
 
