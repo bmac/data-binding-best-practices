@@ -162,12 +162,15 @@ Template (DOM)
 - `<a href=”” ng-click=”doSomething()”>` looks a lot like `<a href=”#” onclick=”doSomething()”>`
   - old style onclick put doSomething in the global scope
   - Connecting presentation and behavior has to be done somewhere
-    - Declarative templating is useful for debugging and understanding code
-    - As mentioned before having logic in the templates is still bad
+      - Declarative templating is useful for debugging and understanding code
+      - As mentioned before having logic in the templates is still bad
   - Separating content from presentation matters.
-    - For documents.
-    - Applications are not documents.
+      - For documents.
+      - Applications are not documents.
   - Web components will have declarative syntax?
+  - Backbone/jQuery model Seperates technologies but not concerns
+      - like the display logic that drives the markup is going to be intimately coupled together. 
+      - They are a cohesive unit because they’re both displaying the data.
 - Performance
   - This has some truth
   - these frameworks are big
