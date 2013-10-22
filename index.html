@@ -225,128 +225,6 @@ myModule.directive(<span class="string">'numberInput'</span>, <span class="funct
 <!--         </section> -->
         </section>
 
-        <!-- <section data-markdown> -->
-        <!--   <script type="text/template"> -->
-        <!--     ## Knockout -->
-
-        <!--     ```JavaScript -->
-        <!--     var ViewModel = function() { -->
-        <!--       this.name = ko.observable('foo'); -->
-        <!--       this.reset = function() { -->
-        <!--         this.name('foo'); -->
-        <!--       }; -->
-        <!--       this.length = ko.computed(function() { -->
-        <!--         return this.name().length; -->
-        <!--       }, this); -->
-        <!--     }; -->
-        <!--     ko.applyBindings(new ViewModel()); -->
-        <!--     ``` -->
-        <!--     ```html -->
-        <!--     <input data-bind="value: name, valueUpdate: afterkeydown" value="foo"/> -->
-        <!--     <button data-bind="click: reset">Reset</button> -->
-        <!--     <div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div> -->
-        <!--     ``` -->
-
-        <!--     <input class="form-control" data-bind="value: name, valueUpdate: 'afterkeydown'" value="foo"/><button data-bind="click: reset">Reset</button> -->
-        <!--     <div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div> -->
-        <!--   </script> -->
-        <!-- </section> -->
-<section>
-<section id="ko-example1">
-<h2>Knockout</h2>
-<pre><div class="JavaScript javascript"><span class="keyword">var</span> ViewModel = <span class="keyword">function</span>() {
-  <span class="keyword">this</span>.name = ko.observable(<span class="string">'<span data-bind="text: name"></span>'</span>);
-  <span class="keyword">this</span>.reset = <span class="keyword">function</span>() {
-    <span class="keyword">this</span>.name(<span class="string">'foo'</span>);
-  };
-  <span class="keyword">this</span>.length = ko.computed(<span class="keyword">function</span>() {
-    <span class="keyword">return</span> <span class="keyword">this</span>.name().length;
-    }, <span class="keyword">this</span>);  <span class="comment">// this.length(); => <span data-bind="text: length"></span></span>
-};
-ko.applyBindings(<span class="keyword">new</span> ViewModel());</div></pre>
-<pre><div class="html xml"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">data-bind</span>=<span class="value">"value: name, valueUpdate: 'afterkeydown'"</span> <span class="attribute">value</span>=<span class="value">"<span data-bind="text: name"></span>"</span>/&gt;</span>
-<span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-bind</span>=<span class="value">"click: reset"</span>&gt;</span>Reset<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-<span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: name"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span> 
-Name Length: <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: length"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
-<p><input class="form-control" data-bind="value: name, valueUpdate: 'afterkeydown'" value="foo"><button data-bind="click: reset">Reset</button></p>
-<div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div>
-<script>
-$(function() {
-            var ViewModel = function() {
-              this.name = ko.observable('foo');
-              this.reset = function() {
-                this.name('foo');
-              };
-              this.length = ko.computed(function() {
-                return this.name().length;
-              }, this);
-            };
-            ko.applyBindings(new ViewModel(), document.getElementById('ko-example1'));
-});
-</script>
-</section>
-<!-- <section data-markdown> -->
-
-<!--           <script type="text/template"> -->
-<!--             ```JavaScript -->
-<!-- viewModel.price = ko.observable(100); -->
-<!-- ko.bindingHandlers.number = { -->
-<!--     init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) { -->
-<!--         var observable = valueAccessor(); -->
-<!--         element.addEventListener('change', function() { -->
-<!--            var number = parseInt(element.value.replace(/,/g, ''), 10); -->
-<!--            observable(number); -->
-<!--         }); -->
-<!--     }, -->
-<!--     update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) { -->
-<!--         var number = ko.unwrap(valueAccessor()); -->
-<!--         element.value = number.toLocalString(); -->
-<!--     }}; -->
-<!--             ``` -->
-<!-- ```html -->
-<!-- <label> Price: <input type="text" data-bind="number: price" /></label> -->
-<!-- ``` -->
-<!-- <label> Price: <input type="text" class="form-control" data-bind="number: price" /></label> -->
-
-<!--           </script> -->
-<!-- </section> -->
-<section id="ko-binding-example"><pre><div class="JavaScript javascript">viewModel.price = ko.observable(<span class="number" data-bind="text: price"></span>);
-ko.bindingHandlers.number = {
-    init: <span class="keyword">function</span>(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        <span class="keyword">var</span> observable = valueAccessor();
-        element.addEventListener(<span class="string">'change'</span>, <span class="keyword">function</span>() {
-           <span class="keyword">var</span> number = parseInt(element.value.replace(<span class="regexp">/,/g</span>, <span class="string">''</span>), <span class="number">10</span>);
-           observable(number);
-        });
-    },
-    update: <span class="keyword">function</span>(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        <span class="keyword">var</span> number = ko.unwrap(valueAccessor());
-        element.value = number.toLocaleString();
-    }};</div></pre>
-<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span> Price: <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">data-bind</span>=<span class="value">"number: price"</span> /&gt;</span><span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
-<label> Price: <input type="text" class="form-control" data-bind="number: price"></label>
-<script>
-$(function() {
-ko.bindingHandlers.number = {
-    init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        var observable = valueAccessor();
-        element.addEventListener('change', function() {
-           var number = parseInt(element.value.replace(/,/g, ''), 10);
-           observable(number);
-        });
-    },
-    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        var number = ko.unwrap(valueAccessor());
-        element.value = number.toLocaleString();
-    }};
-var vm = {
-  price: ko.observable(100)
-};
-ko.applyBindings(vm, $('#ko-binding-example')[0]);
-});
-</script>
-</section>
-</section>
 
         <!-- <section data-markdown> -->
         <!--   <script type="text/template"> -->
@@ -488,19 +366,129 @@ App.NumberInputComponent = Ember.Component.extend({
 {{number-input value=price}}
 </script>
 
+        <!-- <section data-markdown> -->
+        <!--   <script type="text/template"> -->
+        <!--     ## Knockout -->
 
-        <section>
-          <table>
-            <thead>
-              <tr><td></td><td>Angular</td><td>Ember</td><td>Knockout</td></tr>
-            </thead>
-            <tbody>
-              <tr><th>Presentation Model</th><td>$scope</td><td>Controller</td><td>View Model</td></tr>
-              <tr class="fragment"><th>Template</th><td>HTML</td><td>handlebars</td><td>HTML</td></tr>
-              <tr class="fragment"><th>Binding</th><td>Directive</td><td>Component</td><td>Binding</td></tr>
-            </tbody>
-          </table>
-        </section>
+        <!--     ```JavaScript -->
+        <!--     var ViewModel = function() { -->
+        <!--       this.name = ko.observable('foo'); -->
+        <!--       this.reset = function() { -->
+        <!--         this.name('foo'); -->
+        <!--       }; -->
+        <!--       this.length = ko.computed(function() { -->
+        <!--         return this.name().length; -->
+        <!--       }, this); -->
+        <!--     }; -->
+        <!--     ko.applyBindings(new ViewModel()); -->
+        <!--     ``` -->
+        <!--     ```html -->
+        <!--     <input data-bind="value: name, valueUpdate: afterkeydown" value="foo"/> -->
+        <!--     <button data-bind="click: reset">Reset</button> -->
+        <!--     <div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div> -->
+        <!--     ``` -->
+
+        <!--     <input class="form-control" data-bind="value: name, valueUpdate: 'afterkeydown'" value="foo"/><button data-bind="click: reset">Reset</button> -->
+        <!--     <div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div> -->
+        <!--   </script> -->
+        <!-- </section> -->
+<section>
+<section id="ko-example1">
+<h2>Knockout</h2>
+<pre><div class="JavaScript javascript"><span class="keyword">var</span> ViewModel = <span class="keyword">function</span>() {
+  <span class="keyword">this</span>.name = ko.observable(<span class="string">'<span data-bind="text: name"></span>'</span>);
+  <span class="keyword">this</span>.reset = <span class="keyword">function</span>() {
+    <span class="keyword">this</span>.name(<span class="string">'foo'</span>);
+  };
+  <span class="keyword">this</span>.length = ko.computed(<span class="keyword">function</span>() {
+    <span class="keyword">return</span> <span class="keyword">this</span>.name().length;
+    }, <span class="keyword">this</span>);  <span class="comment">// this.length(); => <span data-bind="text: length"></span></span>
+};
+ko.applyBindings(<span class="keyword">new</span> ViewModel());</div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">data-bind</span>=<span class="value">"value: name, valueUpdate: 'afterkeydown'"</span> <span class="attribute">value</span>=<span class="value">"<span data-bind="text: name"></span>"</span>/&gt;</span>
+<span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-bind</span>=<span class="value">"click: reset"</span>&gt;</span>Reset<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: name"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span> 
+Name Length: <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: length"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
+<p><input class="form-control" data-bind="value: name, valueUpdate: 'afterkeydown'" value="foo"><button data-bind="click: reset">Reset</button></p>
+<div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div>
+<script>
+$(function() {
+            var ViewModel = function() {
+              this.name = ko.observable('foo');
+              this.reset = function() {
+                this.name('foo');
+              };
+              this.length = ko.computed(function() {
+                return this.name().length;
+              }, this);
+            };
+            ko.applyBindings(new ViewModel(), document.getElementById('ko-example1'));
+});
+</script>
+</section>
+<!-- <section data-markdown> -->
+
+<!--           <script type="text/template"> -->
+<!--             ```JavaScript -->
+<!-- viewModel.price = ko.observable(100); -->
+<!-- ko.bindingHandlers.number = { -->
+<!--     init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) { -->
+<!--         var observable = valueAccessor(); -->
+<!--         element.addEventListener('change', function() { -->
+<!--            var number = parseInt(element.value.replace(/,/g, ''), 10); -->
+<!--            observable(number); -->
+<!--         }); -->
+<!--     }, -->
+<!--     update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) { -->
+<!--         var number = ko.unwrap(valueAccessor()); -->
+<!--         element.value = number.toLocalString(); -->
+<!--     }}; -->
+<!--             ``` -->
+<!-- ```html -->
+<!-- <label> Price: <input type="text" data-bind="number: price" /></label> -->
+<!-- ``` -->
+<!-- <label> Price: <input type="text" class="form-control" data-bind="number: price" /></label> -->
+
+<!--           </script> -->
+<!-- </section> -->
+<section id="ko-binding-example"><pre><div class="JavaScript javascript">viewModel.price = ko.observable(<span class="number" data-bind="text: price"></span>);
+ko.bindingHandlers.number = {
+    init: <span class="keyword">function</span>(element, valueAccessor) {
+        <span class="keyword">var</span> observable = valueAccessor();
+        element.addEventListener(<span class="string">'blur'</span>, <span class="keyword">function</span>() {
+           <span class="keyword">var</span> number = parseInt(element.value.replace(<span class="regexp">/,/g</span>, <span class="string">''</span>), <span class="number">10</span>);
+           observable(number);
+        });
+    },
+    update: <span class="keyword">function</span>(element, valueAccessor) {
+        <span class="keyword">var</span> number = ko.unwrap(valueAccessor());
+        element.value = number.toLocaleString();
+    }};</div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span> Price: <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">data-bind</span>=<span class="value">"number: price"</span> /&gt;</span><span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
+<label> Price: <input type="text" class="form-control" data-bind="number: price"></label>
+<script>
+$(function() {
+ko.bindingHandlers.number = {
+    init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var observable = valueAccessor();
+        element.addEventListener('change', function() {
+           var number = parseInt(element.value.replace(/,/g, ''), 10);
+           observable(number);
+        });
+    },
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var number = ko.unwrap(valueAccessor());
+        element.value = number.toLocaleString();
+    }};
+var vm = {
+  price: ko.observable(100)
+};
+ko.applyBindings(vm, $('#ko-binding-example')[0]);
+});
+</script>
+</section>
+</section>
+
 
         <section>
           <h2>Presentation Model</h2>
@@ -525,8 +513,9 @@ App.NumberInputComponent = Ember.Component.extend({
 
         <section>
           <h2>Binding</h2>
+          <p>Update the DOM to reflect the Presentation Model</p>
           <p>Translates DOM events into application events</p>
-          <p>Responsible for updating the state of the DOM to reflect the Presentation Model</p>
+
           <ul>
             <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> Directives </li>
             <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Components/Views </li>
@@ -563,21 +552,91 @@ App.NumberInputComponent = Ember.Component.extend({
           </script>
         </section>
 
-        <section data-markdown>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Logicless Templates
+              - Logic In templates is bad
+              - Exception: Simple if else statements
+                - `if foo || bar` is bad
+              - Exception: passing arguments to handlers is ok
+                - Required for angular
+                - Easy to do in ember
+                - Hard to do in Knockout 
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Bad
 
-          <script type="text/template">
-            ## Seperation Of Concerns
-            - Presnetation Model is for Data
-            - Bindings for DOM manipulation and (browser) event handeling
-            - Services for Business Logic
-            - Templates for HTML
-          </script>
+              ```html
+              <label ng-app>Batting Average: {{hits / atBats}}</label>
+              ```
+
+              ```html
+              <span data-bind="if: onsale || superCheap">
+                Buy Me!
+              </span>
+              ```
+
+              ### Unacceptable
+
+              ```html
+<button ng-click="count = count + 1" ng-init="count=0">
+  Increment
+</button>
+             ```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## If/Else :)
+
+              ```html
+              {{#if inStock}}
+                <button>Buy It Now!</button>
+              {{else}}
+                <span>Sold Out!</span>
+              {{/if}}
+              ```
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ## Passing Arguments :)
+
+              ```html
+              <button {{action "buyItNow" item}}>✓</button>
+              ```
+
+              ```html
+              <button ng-click="buyItNow($event, item)">
+               Increment
+              </button>
+              ```
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ## Unless You are using Knockout :(
+
+              ```html
+              <button data-bind="click: function(viewModel) {viewModel.somethind(foo);  }">
+                Do Something
+              </button>
+              ```
+
+            </script>
+          </section>
         </section>
 
+
         <section data-markdown>
 
           <script type="text/template">
-            # The Presentation Model is for State
+            ## The Presentation Model is for State
             - Good
               - State Values
               - Computed Values
@@ -588,20 +647,6 @@ App.NumberInputComponent = Ember.Component.extend({
               - Ajax/Network logic
           </script>
         </section>
-
-        <section data-markdown>
-          <script type="text/template">
-            ## Logicless Templates
-            - Logic In templates is bad
-            - Exception: Simple if else statements
-              - `if foo || bar` is bad
-            - Exception: passing arguments to handlers is ok
-              - Required for angular
-              - Easy to do in ember
-              - Hard to do in Knockout 
-          </script>
-        </section>
-
 
         <section data-markdown>
           <script type="text/template">
@@ -625,6 +670,17 @@ App.NumberInputComponent = Ember.Component.extend({
             ## Keep presentation logic as close to the dom as possible
             - Handlebars helpers / Angular filters
             - Only use bindings when directly responding to browser events
+          </script>
+        </section>
+
+        <section data-markdown>
+
+          <script type="text/template">
+            ## Seperation Of Concerns
+            - Presnetation Model is for Data
+            - Bindings for DOM manipulation and (browser) event handeling
+            - Services for Business Logic
+            - Templates for HTML
           </script>
         </section>
 
