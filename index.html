@@ -551,18 +551,121 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
             # Best Practices
           </script>
         </section>
+        <section>
+        <section data-markdown>
+
+          <script type="text/template">
+            ## The Presentation Model is for State
+            - Good
+              - State Values
+              - Computed Values
+              - Simple Handlers
+            - Bad
+              - DOM Manipulation
+              - Perisitance Logic
+              - Ajax/Network logic
+          </script>
+        </section>
+
+        <section data-markdown>
+
+          <script type="text/template">
+            ## Good
+            ```JavaScript
+            App.StateController = Ember.ObjectController.extend({
+              actions: {
+                toggleEdit: function() { // Simple Event Handler
+                  this.tiggleProperty('edit')
+                },
+                save: function() { // Delegate complex logic to services
+                  localStorageService.save(this.get('model'));
+                }
+              },
+              editing: false,
+              author: {}, // State
+              authorName: function() { // Computed State
+                var firstName = this.get('author.firstName');
+                var lastName = this.get('author.lastName');
+                return firstName + ' ' + lastName;
+              }.property('author.firstName', 'author.lastName')
+            ```
+          </script>
+        </section>
+
+        <section data-markdown>
+
+          <script type="text/template">
+            ## Bad
+            ```JavaScript
+            var viewModel = {
+              toggleEdit: function() {
+                $('.edit-controls').toggleClass('hide'); // DOM manupulation
+                $('.view-panel').toggleClass('hide');
+              },
+              save: function() {
+                var model = ko.toJS(this); // Complex logic
+                localStorage.setItem(this.key, JSON.stringify(model));
+              },
+              load: function() {
+                var self = this; // AJAX
+                $.ajax(this.url).then(function() {
+                  self.author(data.author);
+                  self.title(data.title);
+                });
+              }
+            };
+            ```
+          </script>
+        </section>
+        </section>
+
+        <section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Business Logic belongs in Serices
+            - Work with JavaScript Objects not the DOM
+            - Reusable
+            - Testable
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Hints that your code should go in a service
+            - Anything that deals with ajax
+            - Transformation of data
+            - Iteration or underscore methods
+            - Managing promises
+            - Facade for 3rd party APIs
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Services should transform data but not store it
+            ```JavaScript
+            define(function() {
+              var internalState = 0;
+              return {
+                goodMethod: function(input) {
+                  return _(input).pluck('foo').map(function(val) { return 2 * val;});
+                },
+                badMethod: function() {
+                  return ++internalState;
+                }
+              };
+            });
+            ```
+          </script>
+        </section>
+        
+        </section>
 
         <section>
           <section data-markdown>
             <script type="text/template">
               ## Logicless Templates
-              - Logic In templates is bad
-              - Exception: Simple if else statements
-                - `if foo || bar` is bad
-              - Exception: passing arguments to handlers is ok
-                - Required for angular
-                - Easy to do in ember
-                - Hard to do in Knockout 
+              Picture of spock?
             </script>
           </section>
           <section data-markdown>
@@ -632,31 +735,6 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
           </section>
         </section>
 
-
-        <section data-markdown>
-
-          <script type="text/template">
-            ## The Presentation Model is for State
-            - Good
-              - State Values
-              - Computed Values
-              - Simple Handlers
-            - Bad
-              - DOM Manipulation
-              - Perisitance Logic
-              - Ajax/Network logic
-          </script>
-        </section>
-
-        <section data-markdown>
-          <script type="text/template">
-            ## Business Logic belongs in Serices
-            - Work with JavaScript Object not the dom
-            - Reusable
-            - Testable
-          </script>
-        </section>
-
         <section data-markdown>
           <script type="text/template">
             ## DOM manipulation allways happens in binding
@@ -681,6 +759,14 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
             - Bindings for DOM manipulation and (browser) event handeling
             - Services for Business Logic
             - Templates for HTML
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Best Stragegy for Loading data
+            - Resolve everything first (simple)
+            - Load a piece at a time (faster perceived performance)
           </script>
         </section>
 
