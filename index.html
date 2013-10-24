@@ -62,6 +62,7 @@
             <li>Inventory Tracking for Restaurants - Knockout</li>
             <li>Inventory Tracking for Ecommerce - Angular</li>
             <li>WebRTC App - Ember</li>
+            <li>#knockout on freenode</li>
           </ul>
         </section>
 
@@ -80,18 +81,18 @@
 
         <section>
           <h2>Some people don't share my love</h2>
-          <h3>Problems</h3>
           <ul>
             <li>"Over engineered and non obvious"</li>
             <li>"Think in (angular|ember|knockout)"</li>
             <li>Can't use native primitives; have to do things the framework way</li>
           </ul>
-          <h3></h3>
+            <aside class="notes">
           <ul>
             <li>Competing with native application frameworks</li>
             <li>Think about manupulating data not the DOM</li>
             <li>For now doing things the framework way is a tradeoff</li>
           </ul>
+            </aside>
         </section>
 
         <section>
@@ -622,7 +623,7 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
         <section>
         <section data-markdown>
           <script type="text/template">
-            ## Business Logic belongs in Serices
+            ## Business Logic Belongs in Serivces
             - Work with JavaScript Objects not the DOM
             - Reusable
             - Testable
@@ -738,13 +739,36 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
         <section>
         <section data-markdown>
           <script type="text/template">
-            ## DOM manipulation allways happens in binding
+            ## Binding Tips
+            - DOM Manipulation
             - jQuery
+            - Event Listeners
             - Wrap existing UI widgets in binding
                 - https://github.com/angular-ui
                 - https://github.com/emberjs-addons
                 - https://github.com/Knockout-Contrib
-            - If your widget has state it may make sense for your binding to expose this state
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Always Traverse Down the DOM Tree
+
+            #### Good
+            ```JavaScript
+            link: function($scope, element, attrs, modelCtrl) {
+              $(element).datepicker();
+            } //...
+            ```
+
+            #### Bad
+            ```JavaScript
+            link: function($scope, element, attrs, modelCtrl) {
+              element.parent().find('.placeholder').click(function() {
+                 element.parent().find('.placeholder').hide();
+              } // ...
+            ```
+
           </script>
         </section>
 
@@ -779,7 +803,7 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 <!--           </script> -->
 <!--         </section> -->
 <section id="focusState">
-<h2>Exposing state as observables</h2>
+<h2>Expose State as an Observable</h2>
 <pre><div class="JavaScript javascript"><span class="keyword">var</span> VM = <span class="keyword">function</span>() {
     <span class="keyword">this</span>.name = ko.observable('<span data-bind="text: name"></span>');
     <span class="keyword">this</span>.inputHasFocus = ko.observable(<span class="literal"><span data-bind="text: inputHasFocus"></span></span>);
@@ -800,6 +824,13 @@ ko.bindingHandlers[<span class="string">'hasFocus'</span>] = {
 <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"fruit"</span> <span class="attribute">data-bind</span>=<span class="value">"value: name, hasFocus: inputHasFocus"</span>/&gt;</span></div></pre>
 <p><label data-bind="css: {'hilight': hilight}" class="hilight">Favorite Fruit:</label></p>
 <input id="fruit" class="form-control focus-state" data-bind="value: name, hasFocus: inputHasFocus">
+<aside class="notes">
+  <ul>
+    <li>jQuery widgets </li>
+    <li>Modals</li>
+    <li>I want perform this action only when x is shown/hidden</li>
+  </ul>
+</aside>
 </section>
 <script>
 $(function() {
@@ -825,12 +856,21 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
 </script>
         </section>
 
-        <section data-markdown>
-          <script type="text/template">
-            ## Keep presentation logic as close to the dom as possible
-            - Handlebars helpers / Angular filters
-            - Only use bindings when directly responding to browser events
-          </script>
+        <section>
+          <h2>Keep Presentation Logic Close to the DOM</h2>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span>Order Date: {{purchaseOrder.createdAt | date}}<span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span>Order Date: {{date purchaseOrder.createdAt}}<span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
+          <ul>
+            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> Angular Filters </li>
+            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Handlebars Helpers </li>
+            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > Knockout.Punches</li>
+          </ul>
+            <aside class="notes">
+              <ul>
+                <li>Keep Data in a Form that is easy to manipulate</li>
+                <li>Bindings are for Responding to a Browser Events</li>
+              </ul>
+            </aside>
         </section>
 
         <section data-markdown>
@@ -838,7 +878,7 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
           <script type="text/template">
             ## Seperation Of Concerns
             - Presnetation Model is for Data
-            - Bindings for DOM manipulation and (browser) event handeling
+            - Bindings for DOM Manipulation and Event Handeling
             - Services for Business Logic
             - Templates for HTML
           </script>

@@ -50,7 +50,7 @@ body {
     font-family: "League Gothic", Impact, sans-serif;
     line-height: 0.9em;
     letter-spacing: 0.02em;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2); }
 
 .reveal h1 {
@@ -199,4 +199,19 @@ button {
 
 .focus-state:focus {
     box-shadow: 0px 0px 100px hotpink;
+}
+
+
+pre > div {
+  display: block; padding: 0.5em;
+  background: #3F3F3F;
+  color: #DCDCDC;
+}
+
+.reveal pre > div {
+	font-family: monospace;
+	padding: 5px;
+	overflow: auto;
+	max-height: 400px;
+	word-wrap: normal;
 }
