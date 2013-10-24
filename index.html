@@ -726,7 +726,7 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
               ## Unless You are using Knockout :(
 
               ```html
-              <button data-bind="click: function(viewModel) {viewModel.somethind(foo);  }">
+              <button data-bind="click: function(vm) {vm.something(foo); }">
                 Do Something
               </button>
               ```
@@ -735,12 +735,44 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
           </section>
         </section>
 
+        <section>
         <section data-markdown>
           <script type="text/template">
             ## DOM manipulation allways happens in binding
             - This is the only place where you should see jQuery
             - When working with legacy widgits expose dom state as observables
           </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Exposing state as observables
+            ```JavaScript
+var VM = function() {
+    this.name = ko.observable();
+    this.inputHasFocus = ko.observable(false);
+    this.hilight = ko.computed(function () {
+      return !(this.name() || this.inputHasFocus());
+    }, this);
+};
+ko.bindingHandlers['hasFocus'] = {
+    init: function (element, valueAccessor) {
+        var observable = valueAccessor();
+        $(element).on('focus', function () {
+            observable(true);
+        });
+        $(element).on('blur', function () {
+            observable(false);
+        }); // ...
+            ```
+
+            ```html
+            <label data-bind="css: {'hilight': hilight}">Favorite Fruit:</label>
+            <input id="fruit" data-bind="value: name, hasFocus: inputHasFocus"/>            
+            ```
+          </script>
+        </section>
+
         </section>
 
         <section data-markdown>
