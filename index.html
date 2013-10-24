@@ -744,10 +744,61 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
           </script>
         </section>
 
-        <section data-markdown>
-          <script type="text/template">
-            ## Exposing state as observables
-            ```JavaScript
+<!--         <section data-markdown id="focusState"> -->
+<!--           <script type="text/template"> -->
+<!--             ## Exposing state as observables -->
+<!--             ```JavaScript -->
+<!-- var VM = function() { -->
+<!--     this.name = ko.observable(); -->
+<!--     this.inputHasFocus = ko.observable(false); -->
+<!--     this.hilight = ko.computed(function () { -->
+<!--       return !(this.name() || this.inputHasFocus()); -->
+<!--     }, this); -->
+<!-- }; -->
+<!-- ko.bindingHandlers['hasFocus'] = { -->
+<!--     init: function (element, valueAccessor) { -->
+<!--         var observable = valueAccessor(); -->
+<!--         $(element).on('focus', function () { -->
+<!--             observable(true); -->
+<!--         }); -->
+<!--         $(element).on('blur', function () { -->
+<!--             observable(false); -->
+<!--         }); // ... -->
+<!--             ``` -->
+
+<!--             ```html -->
+<!--             <label data-bind="css: {'hilight': hilight}">Favorite Fruit:</label> -->
+<!--             <input id="fruit" data-bind="value: name, hasFocus: inputHasFocus"/> -->
+<!--             ``` -->
+<!--             <label data-bind="css: {'hilight': hilight}">Favorite Fruit:</label> -->
+<!--             <input id="fruit" class="form-control" data-bind="value: name, hasFocus: inputHasFocus"/> -->
+<!--           </script> -->
+<!--         </section> -->
+<section id="focusState">
+<h2>Exposing state as observables</h2>
+<pre><div class="JavaScript javascript"><span class="keyword">var</span> VM = <span class="keyword">function</span>() {
+    <span class="keyword">this</span>.name = ko.observable('<span data-bind="text: name"></span>');
+    <span class="keyword">this</span>.inputHasFocus = ko.observable(<span class="literal"><span data-bind="text: inputHasFocus"></span></span>);
+    <span class="keyword">this</span>.hilight = ko.computed(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span> 
+      <span class="keyword">return</span> !(<span class="keyword">this</span>.name() || <span class="keyword">this</span>.inputHasFocus()); <span class="comment">// <span data-bind="text: hilight"></span></span>
+    }, <span class="keyword">this</span>);
+};
+ko.bindingHandlers[<span class="string">'hasFocus'</span>] = {
+    init: <span class="function"><span class="keyword">function</span> <span class="params">(element, valueAccessor)</span> {</span>
+        <span class="keyword">var</span> observable = valueAccessor();
+        $(element).on(<span class="string">'focus'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+            observable(<span class="literal">true</span>);
+        });
+        $(element).on(<span class="string">'blur'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+            observable(<span class="literal">false</span>);
+        }); <span class="comment">// ...</span></div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span> <span class="attribute">data-bind</span>=<span class="value">"css: {'hilight': hilight}"</span>&gt;</span>Favorite Fruit:<span class="tag">&lt;/<span class="title">label</span>&gt;</span>
+<span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"fruit"</span> <span class="attribute">data-bind</span>=<span class="value">"value: name, hasFocus: inputHasFocus"</span>/&gt;</span></div></pre>
+<p><label data-bind="css: {'hilight': hilight}" class="hilight">Favorite Fruit:</label></p>
+<input id="fruit" class="form-control focus-state" data-bind="value: name, hasFocus: inputHasFocus">
+</section>
+<script>
+$(function() {
 var VM = function() {
     this.name = ko.observable();
     this.inputHasFocus = ko.observable(false);
@@ -763,16 +814,11 @@ ko.bindingHandlers['hasFocus'] = {
         });
         $(element).on('blur', function () {
             observable(false);
-        }); // ...
-            ```
-
-            ```html
-            <label data-bind="css: {'hilight': hilight}">Favorite Fruit:</label>
-            <input id="fruit" data-bind="value: name, hasFocus: inputHasFocus"/>            
-            ```
-          </script>
-        </section>
-
+        });
+}};
+ko.applyBindings(new VM(), $('#focusState')[0]);
+});
+</script>
         </section>
 
         <section data-markdown>
