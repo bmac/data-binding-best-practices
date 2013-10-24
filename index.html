@@ -739,8 +739,12 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
         <section data-markdown>
           <script type="text/template">
             ## DOM manipulation allways happens in binding
-            - This is the only place where you should see jQuery
-            - When working with legacy widgits expose dom state as observables
+            - jQuery
+            - Wrap existing UI widgets in binding
+                - https://github.com/angular-ui
+                - https://github.com/emberjs-addons
+                - https://github.com/Knockout-Contrib
+            - If your widget has state it may make sense for your binding to expose this state
           </script>
         </section>
 
