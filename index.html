@@ -558,7 +558,7 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 
         <section>
           <h2>Template</h2>
-          <p>Reserved for the arrangement of presentation</p>
+          <p>Describes the Relationship Between State and the DOM</p>
           <ul>
             <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> HTML </li>
             <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Handlebars </li>
@@ -569,8 +569,8 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 
         <section>
           <h2>Binding</h2>
-          <p>Update the DOM to reflect the Presentation Model</p>
-          <p>Translates DOM events into application events</p>
+          <p>Update the DOM to Reflect the Presentation Model</p>
+          <p>Translates DOM Events into Application Actions</p>
 
           <ul>
             <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> Directives </li>
@@ -602,7 +602,6 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 
 
         <section data-markdown>
-
           <script type="text/template">
             # Best Practices
           </script>
@@ -620,6 +619,14 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
               - DOM Manipulation
               - Perisitance Logic
               - Ajax/Network logic
+            <aside class="notes">
+              <ul>
+                <li>State Lives in JavaScript not the DOM</li>
+                <li>When getting started people often try to put everything here</li>
+                <li>Usually works with the model</li>
+                <li>All about state, responding to domain events, Do not put business logic here</li>
+              </ul>
+            </aside>
           </script>
         </section>
 
@@ -723,6 +730,13 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
               ## Logicless Templates
               Picture of spock?
             </script>
+            <aside class="notes">
+              <ul>
+                <li>Templates are about describeing the relationship between data and the DOM</li>
+                <li>You really want to keep logic in the presentaion model</li>
+                <li>If you find your self wanting to add logic to the template your probabally want to use a computed property</li>
+              </ul>
+            </aside>
           </section>
           <section data-markdown>
             <script type="text/template">
@@ -745,6 +759,12 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
   Increment
 </button>
              ```
+<aside class="notes">
+  <ul>
+    <li>Logic in templates is evil</li>
+    <li>ember doesn't let you do this/ ember gets this 100% right</li>
+  </ul>
+</aside>
             </script>
           </section>
           <section data-markdown>
@@ -771,6 +791,12 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 
               ```html
               <button ng-click="buyItNow($event, item)">
+               Increment
+              </button>
+              ```
+              #### Bad
+              ```html
+              <button ng-click="buyItNow($event, item || 'default')">
                Increment
               </button>
               ```
@@ -952,6 +978,15 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
             ## Use a Module System
             - Apps are complex
             - Separate repsonsibilites calls for separate modules
+            <aside class="notes">
+              <ul>
+                <li>Its really easy to create circular dependencies if you are using all gobals</li>
+                <li>Angular gets props for encouraging modules with its dependency injection</li>
+                <li>Require js</li>
+                <li>ES6</li>
+                <li>Browserfy</li>
+              </ul>
+            </aside>
           </script>
         </section>
 
