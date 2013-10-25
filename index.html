@@ -80,22 +80,6 @@
           </aside>
         </section>
 
-        <section>
-          <h2>Some people don't share my love</h2>
-          <ul>
-            <li>"Over engineered and non obvious"</li>
-            <li>"Think in (angular|ember|knockout)"</li>
-            <li>Can't use native primitives; have to do things the framework way</li>
-          </ul>
-            <aside class="notes">
-          <ul>
-            <li>Competing with native application frameworks</li>
-            <li>Think about manupulating data not the DOM</li>
-            <li>For now doing things the framework way is a tradeoff</li>
-          </ul>
-            </aside>
-        </section>
-
         <section data-markdown>
 
           <script type="text/template">
@@ -997,18 +981,102 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
           </script>
         </section>
 
+        <section>
+          <h2>Concerns</h2>
+          <ul>
+            <li>"Over engineered and non obvious"</li>
+            <li>"Think in (angular|ember|knockout)"</li>
+            <li>Can't use native primitives; have to do things the framework way</li>
+          </ul>
+            <aside class="notes">
+          <ul>
+            <li>Competing with native application frameworks</li>
+            <li>Think about manupulating data not the DOM</li>
+            <li>For now doing things the framework way is a tradeoff</li>
+          </ul>
+            </aside>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            #### Good?
+
+            ```html
+            <a href="#" ng-click="doSomething()">
+            ```
+           
+            #### Bad?
+
+            ```html 
+            <a href="#" onclick="doSomething()">
+            ```
+
+            - `onclick` puts `doSomething` in the global scope
+            - Connecting presentation and behavior has to be done somewhere
+            <aside class="notes">
+              <ul>
+                <li>Seperating Technologies but not concerns</li>
+                <li>Declarative templating is useful for debugging and understanding code</li>
+                <li>As mentioned before having logic in the templates is still bad</li>
+              </ul>
+            </aside>
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Performance
+
+            "Data Binding Frameworks are Slower Then Vanilla JavaScript"
+            <aside class="notes">
+              <ul>
+                <li>Overheard To Dirty Checking or Setting up Subscriptions</li>
+                <li>Native Vanilla JavaScript has problems too</li>
+                <li>Let Framework authors worry about memory leaks</li>
+                <li>As mentioned before having logic in the templates is still bad</li>
+              </ul>
+            </aside>
+          </script>
+        </section>
+
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Client Side Only
+            "What about Google?"
+
+            "Data Binding Frameworks are Slower Then Vanilla JavaScript"
+            <aside class="notes">
+              <ul>
+                <li>For some things. This doesn't matter.</li>
+                <li>People are working on ways to solve this</li>
+                <li>Bustle, Discourse</li>
+              </ul>
+            </aside>
+          </script>
+        </section>
+
         <section data-markdown>
           <script type="text/template">
             ## Conclusion
             - Converging on the same pattern
             - Under the hood there are different tradoffs
+            <aside class="notes">
+              <ul>
+                <li>Good for us as developers because we can take the design skills with us from one project to another</li>
+                <li>As we've seen happen in the server MVC space</li>
+                <li>I've glossed over a lot of the differneces between these frameworks</li>
+                <li>Besides obvious API differences these frameworks ofter have made different trade offs under the hood</li>
+                <li>In terms of performance, developer usability and </li>
+                <li>Marius Gundersen JS Conf EU talks about some of the tradeoffs</li>
+              </ul>
+            </aside>
           </script>
         </section>
 
         <section data-markdown>
           <script type="text/template">
             ## Fin
-            - The Web Unleashed 2013
             - Brendan McLoughlin
             - @bezomaxo
             - https://bmac.github.io/data-binding-best-practices
