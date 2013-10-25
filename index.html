@@ -858,8 +858,8 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
 
         <section>
           <h2>Keep Presentation Logic Close to the DOM</h2>
-<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span>Order Date: {{purchaseOrder.createdAt | date}}<span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
-<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span>Order Date: {{date purchaseOrder.createdAt}}<span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span>Order Date: {{purchaseOrder.createdAt | date:'MM/dd/yyyy'}}<span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span>Order Date: {{date purchaseOrder.createdAt 'MM/DD/YYYY'}}<span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
           <ul>
             <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> Angular Filters </li>
             <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Handlebars Helpers </li>
