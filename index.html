@@ -41,6 +41,7 @@
           <p>
             Web Unleashed 2013
           </p>
+          <p><a href="https://bmac.github.io/data-binding-best-practice">https://bmac.github.io/data-binding-best-practice</a></p>
         </section>
 
         <section>
@@ -1013,6 +1014,10 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
 
             - `onclick` puts `doSomething` in the global scope
             - Connecting presentation and behavior has to be done somewhere
+
+            ```html 
+            <a href="#" {{action "doSomething"}}>
+            ```
             <aside class="notes">
               <ul>
                 <li>Seperating Technologies but not concerns</li>
