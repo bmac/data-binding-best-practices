@@ -215,3 +215,12 @@ pre > div {
 	max-height: 400px;
 	word-wrap: normal;
 }
+
+.bob {
+    height: 400px
+}
+
+.gir {
+    height: 200px;
+    border-radius: 20px;
+}
