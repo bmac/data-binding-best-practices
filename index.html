@@ -63,11 +63,10 @@
             <li>Inventory Tracking for Restaurants - <img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" ></li>
             <li>Inventory Tracking for Ecommerce - <img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> Angular</li>
             <li>WebRTC App - <img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Ember</li>
-            <li>#knockout on freenode</li>
           </ul>
         </section>
 
-        <section data-markdown>
+        <section data-markdown id="what-is-data-binding">
 
           <script type="text/template">
             ## What is Data Binding?
@@ -75,6 +74,26 @@
             - Link Data to the UI
             - Changes to the Data or the DOM are kept in Sync
             - Relationships are Described with a Declaritive Syntax
+
+            ```JavaScript 
+            var tickets = [
+                { name: "Economy", price: 199.95 },
+                { name: "Business", price: 449.22 },
+                { name: "First Class", price: 1199.99 }
+            ];
+            ```
+
+<p>
+Choose a ticket class:
+<select class="form-control" data-bind="options: tickets, 
+                       optionsCaption: 'Choose...',
+                       optionsText: 'name',
+                       value: chosenTicket"></select>
+</p>                   
+<p data-bind="with: chosenTicket">
+You have chosen <b data-bind="text: name"></b>
+($<span data-bind="text: price"></span>)    
+</p>
             <aside class="notes">
               <ul>
                 <li>Data is some JavaScript state object</li>
@@ -85,6 +104,24 @@
             </aside>
           </script>
         </section>
+
+    <script type="text/javascript">
+      $(function() {
+        function TicketsViewModel() {
+            this.tickets = [
+                { name: "Economy", price: 199.95 },
+                { name: "Business", price: 449.22 },
+                { name: "First Class", price: 1199.99 }
+            ];
+            this.chosenTicket = ko.observable();
+            this.resetTicket = function() { this.chosenTicket(null) }
+        }
+        console.log($('#what-is-data-binding')[0]);
+        setTimeout(function() {
+        ko.applyBindings(new TicketsViewModel(), $('#what-is-data-binding')[0]);
+      }, 1000);
+      });
+    </script>
 
         <section>
           <img src="images/gir.jpg" class="gir">
