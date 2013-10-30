@@ -41,7 +41,7 @@
           <p>
             Web Unleashed 2013
           </p>
-          <p><a href="https://bmac.github.io/data-binding-best-practice">https://bmac.github.io/data-binding-best-practice</a></p>
+          <p><a href="https://bmac.github.io/data-binding-best-practices">https://bmac.github.io/data-binding-best-practices</a></p>
         </section>
 
         <section>
@@ -135,6 +135,8 @@ You have chosen <b data-bind="text: name"></b>
             <li class="fragment">Managing both touch and pointer based interactions</li>
             <li class="fragment">Complext DOM manipulation in response to data changes</li>
           </ul>
+          <br>
+          <br>
           <cite ><a href="https://lh3.ggpht.com/-7ntFFNpikqM/Tx67iYPZTpI/AAAAAAAABaQ/lk1n55zhFls/s1600/i_love_you_cupcake.jpg">https://lh3.ggpht.com/-7ntFFNpikqM/Tx67iYPZTpI/AAAAAAAABaQ/lk1n55zhFls/s1600/i_love_you_cupcake.jpg</a></cite>
           <aside class="notes">
           </aside>
@@ -243,7 +245,7 @@ You have chosen <b data-bind="text: name"></b>
 <span class="tag">&lt;<span class="title">button</span> <span class="attribute">ng-click</span>=<span class="value">"reset()"</span>&gt;</span>Reset<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
 <span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: {<span>{</span>name}} Name Length: {<span>{</span>length()}} <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
 <p><input class="form-control" ng-model="name" value="foo"><button ng-click="reset()">Reset</button></p>
-<div>Name: {{name}} Name Length: {{length()}} </div>
+<div>Name: {{name}} &nbsp;&nbsp;&nbsp; Length: {{length()}} </div>
 <script>
             function Controller($scope) {
               console.log('controller');
@@ -416,7 +418,7 @@ $(function() {
 <span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: {<span>{</span> name }} Name Length: {<span>{</span> length }}<span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
 {{input class="form-control" value=name }}
 <button {{action 'reset'}}>Reset</button>
-<div>Name: {{ name }} Name Length: {{ length }}</div>
+<div>Name: {{ name }} &nbsp;&nbsp;&nbsp; Length: {{ length }}</div>
   </script>
 
 <script type="text/x-handlebars" id="components/number-input">
@@ -491,7 +493,7 @@ ko.applyBindings(<span class="keyword">new</span> ViewModel());</div></pre>
 <span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: name"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span> 
 Name Length: <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: length"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
 <p><input class="form-control" data-bind="value: name, valueUpdate: 'afterkeydown'" value="foo"><button data-bind="click: reset">Reset</button></p>
-<div>Name: <span data-bind="text: name"></span> Name Length: <span data-bind="text: length"></span></div>
+<div>Name: <span data-bind="text: name"></span> &nbsp;&nbsp;&nbsp; Length: <span data-bind="text: length"></span></div>
 <script>
 $(function() {
             var ViewModel = function() {
@@ -599,7 +601,7 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 
           <ul>
             <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> Directives </li>
-            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Components/Views </li>
+            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Components </li>
             <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > Binding</li>
           </ul>
         </section>
@@ -846,9 +848,9 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
         <section data-markdown>
           <script type="text/template">
             ## Binding Tips
-            - DOM Manipulation
+            - DOM manipulation
             - jQuery
-            - Event Listeners
+            - Event listeners
             - Wrap existing UI widgets in binding
                 - https://github.com/angular-ui
                 - https://github.com/emberjs-addons
@@ -885,7 +887,7 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 <!-- var VM = function() { -->
 <!--     this.name = ko.observable(); -->
 <!--     this.inputHasFocus = ko.observable(false); -->
-<!--     this.hilight = ko.computed(function () { -->
+<!--     this.highlight = ko.computed(function () { -->
 <!--       return !(this.name() || this.inputHasFocus()); -->
 <!--     }, this); -->
 <!-- }; -->
@@ -901,10 +903,10 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 <!--             ``` -->
 
 <!--             ```html -->
-<!--             <label data-bind="css: {'hilight': hilight}">Favorite Fruit:</label> -->
+<!--             <label data-bind="css: {'highlight': highlight}">Favorite Fruit:</label> -->
 <!--             <input id="fruit" data-bind="value: name, hasFocus: inputHasFocus"/> -->
 <!--             ``` -->
-<!--             <label data-bind="css: {'hilight': hilight}">Favorite Fruit:</label> -->
+<!--             <label data-bind="css: {'highlight': highlight}">Favorite Fruit:</label> -->
 <!--             <input id="fruit" class="form-control" data-bind="value: name, hasFocus: inputHasFocus"/> -->
 <!--           </script> -->
 <!--         </section> -->
@@ -913,8 +915,8 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 <pre><div class="JavaScript javascript"><span class="keyword">var</span> VM = <span class="keyword">function</span>() {
     <span class="keyword">this</span>.name = ko.observable('<span data-bind="text: name"></span>');
     <span class="keyword">this</span>.inputHasFocus = ko.observable(<span class="literal"><span data-bind="text: inputHasFocus"></span></span>);
-    <span class="keyword">this</span>.hilight = ko.computed(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span> 
-      <span class="keyword">return</span> !(<span class="keyword">this</span>.name() || <span class="keyword">this</span>.inputHasFocus()); <span class="comment">// <span data-bind="text: hilight"></span></span>
+    <span class="keyword">this</span>.highlight = ko.computed(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span> 
+      <span class="keyword">return</span> !(<span class="keyword">this</span>.name() || <span class="keyword">this</span>.inputHasFocus()); <span class="comment">// <span data-bind="text: highlight"></span></span>
     }, <span class="keyword">this</span>);
 };
 ko.bindingHandlers[<span class="string">'hasFocus'</span>] = {
@@ -926,9 +928,9 @@ ko.bindingHandlers[<span class="string">'hasFocus'</span>] = {
         $(element).on(<span class="string">'blur'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
             observable(<span class="literal">false</span>);
         }); <span class="comment">// ...</span></div></pre>
-<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span> <span class="attribute">data-bind</span>=<span class="value">"css: {'hilight': hilight}"</span>&gt;</span>Favorite Fruit:<span class="tag">&lt;/<span class="title">label</span>&gt;</span>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span> <span class="attribute">data-bind</span>=<span class="value">"css: {'hot-pink': highlight}"</span>&gt;</span>Favorite Fruit:<span class="tag">&lt;/<span class="title">label</span>&gt;</span>
 <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"fruit"</span> <span class="attribute">data-bind</span>=<span class="value">"value: name, hasFocus: inputHasFocus"</span>/&gt;</span></div></pre>
-<p><label data-bind="css: {'hilight': hilight}" class="hilight">Favorite Fruit:</label></p>
+<p><label data-bind="css: {'highlight': highlight}" class="highlight">Favorite Fruit:</label></p>
 <input id="fruit" class="form-control focus-state" data-bind="value: name, hasFocus: inputHasFocus">
 <aside class="notes">
   <ul>
@@ -943,7 +945,7 @@ $(function() {
 var VM = function() {
     this.name = ko.observable();
     this.inputHasFocus = ko.observable(false);
-    this.hilight = ko.computed(function () {
+    this.highlight = ko.computed(function () {
       return !(this.name() || this.inputHasFocus());
     }, this);
 };
@@ -1090,7 +1092,6 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
             ## Client Side Only
             "What about Google?"
 
-            "Data Binding Frameworks are Slower Then Vanilla JavaScript"
             <aside class="notes">
               <ul>
                 <li>For some things. This doesn't matter.</li>
