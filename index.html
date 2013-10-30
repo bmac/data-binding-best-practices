@@ -38,6 +38,7 @@
       <div class="slides">
         <section>
           <h1>Data Binding Best Practices</h1>
+          <h2>Brendan McLoughlin</h2>
           <p>
             Web Unleashed 2013
           </p>
@@ -49,7 +50,6 @@
             <img src="images/bob.png" alt="Bob" class="bob">
           </div>
           <div class="about-meta">
-            <h2>Brendan McLoughlin</h2>
             <h3>Bocoup</h3>
           </div>
           <aside class="notes">
@@ -1003,8 +1003,14 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
         <section data-markdown>
           <script type="text/template">
             ## Use a Module System
+<img src="images/command-module.jpg" class="module"/>
+<br>
+
             - Apps are Complex
             - Separate Repsonsibilites Calls for Separate Modules
+
+<br>
+<cite ><a href="https://upload.wikimedia.org/wikipedia/commons/4/43/Apollo_10_Command_Module_1.jpg">https://upload.wikimedia.org/wikipedia/commons/4/43/Apollo_10_Command_Module_1.jpg</a></cite>
             <aside class="notes">
               <ul>
                 <li>Its really easy to create circular dependencies if you are using all gobals</li>
@@ -1020,87 +1026,94 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
         <section data-markdown>
           <script type="text/template">
             ## Unit Test
+            <img src="images/testing.png" class="testing">
+            <br>
+
             - Test Seperatly
+
+<br>
+<br>
+<cite ><a href="http://unbounce.com/photos/3-ab-testing-variations.png">http://unbounce.com/photos/3-ab-testing-variations.png</a></cite>
           </script>
         </section>
 
-        <section>
-          <h2>Concerns</h2>
-          <ul>
-            <li>"Over engineered and non obvious"</li>
-            <li>"Think in (angular|ember|knockout)"</li>
-            <li>Can't use native primitives; have to do things the framework way</li>
-          </ul>
-            <aside class="notes">
-          <ul>
-            <li>Competing with native application frameworks</li>
-            <li>Think about manupulating data not the DOM</li>
-            <li>For now doing things the framework way is a tradeoff</li>
-          </ul>
-            </aside>
-        </section>
+        <!-- <section> -->
+        <!--   <h2>Concerns</h2> -->
+        <!--   <ul> -->
+        <!--     <li>"Over engineered and non obvious"</li> -->
+        <!--     <li>"Think in (angular|ember|knockout)"</li> -->
+        <!--     <li>Can't use native primitives; have to do things the framework way</li> -->
+        <!--   </ul> -->
+        <!--     <aside class="notes"> -->
+        <!--   <ul> -->
+        <!--     <li>Competing with native application frameworks</li> -->
+        <!--     <li>Think about manupulating data not the DOM</li> -->
+        <!--     <li>For now doing things the framework way is a tradeoff</li> -->
+        <!--   </ul> -->
+        <!--     </aside> -->
+        <!-- </section> -->
 
-        <section data-markdown>
-          <script type="text/template">
-            #### Good?
+        <!-- <section data-markdown> -->
+        <!--   <script type="text/template"> -->
+        <!--     #### Good? -->
 
-            ```html
-            <a href="#" ng-click="doSomething()">
-            ```
+        <!--     ```html -->
+        <!--     <a href="#" ng-click="doSomething()"> -->
+        <!--     ``` -->
            
-            #### Bad?
+        <!--     #### Bad? -->
 
-            ```html 
-            <a href="#" onclick="doSomething()">
-            ```
+        <!--     ```html  -->
+        <!--     <a href="#" onclick="doSomething()"> -->
+        <!--     ``` -->
 
-            - `onclick` puts `doSomething` in the global scope
-            - Connecting presentation and behavior has to be done somewhere
+        <!--     - `onclick` puts `doSomething` in the global scope -->
+        <!--     - Connecting presentation and behavior has to be done somewhere -->
 
-            ```html 
-            <a href="#" {{action "doSomething"}}>
-            ```
-            <aside class="notes">
-              <ul>
-                <li>Seperating Technologies but not concerns</li>
-                <li>Declarative templating is useful for debugging and understanding code</li>
-                <li>As mentioned before having logic in the templates is still bad</li>
-              </ul>
-            </aside>
-          </script>
-        </section>
+        <!--     ```html  -->
+        <!--     <a href="#" {{action "doSomething"}}> -->
+        <!--     ``` -->
+        <!--     <aside class="notes"> -->
+        <!--       <ul> -->
+        <!--         <li>Seperating Technologies but not concerns</li> -->
+        <!--         <li>Declarative templating is useful for debugging and understanding code</li> -->
+        <!--         <li>As mentioned before having logic in the templates is still bad</li> -->
+        <!--       </ul> -->
+        <!--     </aside> -->
+        <!--   </script> -->
+        <!-- </section> -->
 
-        <section data-markdown>
-          <script type="text/template">
-            ## Performance
+        <!-- <section data-markdown> -->
+        <!--   <script type="text/template"> -->
+        <!--     ## Performance -->
 
-            "Data Binding Frameworks are Slower Then Vanilla JavaScript"
-            <aside class="notes">
-              <ul>
-                <li>Overheard To Dirty Checking or Setting up Subscriptions</li>
-                <li>Native Vanilla JavaScript has problems too</li>
-                <li>Let Framework authors worry about memory leaks</li>
-                <li>As mentioned before having logic in the templates is still bad</li>
-              </ul>
-            </aside>
-          </script>
-        </section>
+        <!--     "Data Binding Frameworks are Slower Then Vanilla JavaScript" -->
+        <!--     <aside class="notes"> -->
+        <!--       <ul> -->
+        <!--         <li>Overheard To Dirty Checking or Setting up Subscriptions</li> -->
+        <!--         <li>Native Vanilla JavaScript has problems too</li> -->
+        <!--         <li>Let Framework authors worry about memory leaks</li> -->
+        <!--         <li>As mentioned before having logic in the templates is still bad</li> -->
+        <!--       </ul> -->
+        <!--     </aside> -->
+        <!--   </script> -->
+        <!-- </section> -->
 
 
-        <section data-markdown>
-          <script type="text/template">
-            ## Client Side Only
-            "What about Google?"
+        <!-- <section data-markdown> -->
+        <!--   <script type="text/template"> -->
+        <!--     ## Client Side Only -->
+        <!--     "What about Google?" -->
 
-            <aside class="notes">
-              <ul>
-                <li>For some things. This doesn't matter.</li>
-                <li>People are working on ways to solve this</li>
-                <li>Bustle, Discourse</li>
-              </ul>
-            </aside>
-          </script>
-        </section>
+        <!--     <aside class="notes"> -->
+        <!--       <ul> -->
+        <!--         <li>For some things. This doesn't matter.</li> -->
+        <!--         <li>People are working on ways to solve this</li> -->
+        <!--         <li>Bustle, Discourse</li> -->
+        <!--       </ul> -->
+        <!--     </aside> -->
+        <!--   </script> -->
+        <!-- </section> -->
 
         <section data-markdown>
           <script type="text/template">
@@ -1206,7 +1219,7 @@ function DirectiveExampleController($scope) {
       center: true,
 
       theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-      transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+      transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
 
       // Optional libraries used to extend on reveal.js
       dependencies: [

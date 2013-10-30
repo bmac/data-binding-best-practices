@@ -230,6 +230,11 @@ pre > div {
     border-radius: 20px;
 }
 
+.module, .testing {
+    height: 350px;
+    border-radius: 20px;
+}
+
 cite {
     width: 900px;
     display: block;
