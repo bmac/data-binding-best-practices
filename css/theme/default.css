@@ -230,7 +230,7 @@ pre > div {
     border-radius: 20px;
 }
 
-.module, .testing {
+.module, .testing, .arch {
     height: 350px;
     border-radius: 20px;
 }
