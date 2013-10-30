@@ -161,28 +161,28 @@ You have chosen <b data-bind="text: name"></b>
             </aside>
         </section>
 
-        <section>
-          <h2>JavaScript's Data Binding Landscape</h2>
-          <ul>
-            <li>Angular (late 2009)</li>
-            <li>Knockout (2010)</li>
-            <li>Ember (2011)
-              <ul><li>Sproutcore (2007)</li></ul>
-            </li>
-            <li>Meteor (2011)</li>
-            <li>Ractive (2012)</li>
-            <li>Polymer (2012)</li>
-          </ul>
-           <aside class="notes">
-              <ul>
-                <li>Reletivly recent</li>
-                <li>We've had some time to shake out the bugs</li>
-                <li>Browsers are getting faster</li>
-                <li>Network requests are still slow</li>
-                <li>Browsers can do more</li>
-              </ul>
-            </aside>
-        </section>
+        <!-- <section> -->
+        <!--   <h2>JavaScript's Data Binding Landscape</h2> -->
+        <!--   <ul> -->
+        <!--     <li>Angular (late 2009)</li> -->
+        <!--     <li>Knockout (2010)</li> -->
+        <!--     <li>Ember (2011) -->
+        <!--       <ul><li>Sproutcore (2007)</li></ul> -->
+        <!--     </li> -->
+        <!--     <li>Meteor (2011)</li> -->
+        <!--     <li>Ractive (2012)</li> -->
+        <!--     <li>Polymer (2012)</li> -->
+        <!--   </ul> -->
+        <!--    <aside class="notes"> -->
+        <!--       <ul> -->
+        <!--         <li>Reletivly recent</li> -->
+        <!--         <li>We've had some time to shake out the bugs</li> -->
+        <!--         <li>Browsers are getting faster</li> -->
+        <!--         <li>Network requests are still slow</li> -->
+        <!--         <li>Browsers can do more</li> -->
+        <!--       </ul> -->
+        <!--     </aside> -->
+        <!-- </section> -->
 
         <section data-markdown>
 
@@ -259,7 +259,9 @@ You have chosen <b data-bind="text: name"></b>
             };
 </script>
 </section>
-<section ng-controller="DirectiveExampleController" style="padding-top: 0px;" ><pre><div class="JavaScript php"><span class="variable">$scope</span>.price = <span class="number">{{price}}</span>; <span class="comment">//...</span>
+<section ng-controller="DirectiveExampleController" style="padding-top: 0px;" >
+<h2>Angular</h2>
+<pre><div class="JavaScript php"><span class="variable">$scope</span>.price = <span class="number">{{price}}</span>; <span class="comment">//...</span>
 myModule.directive(<span class="string">'numberInput'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
   <span class="keyword">return</span> {
     template: <span class="string">'&lt;input type="text"/&gt;'</span>,
@@ -534,7 +536,9 @@ $(function() {
 
 <!--           </script> -->
 <!-- </section> -->
-<section id="ko-binding-example"><pre><div class="JavaScript javascript">viewModel.price = ko.observable(<span class="number" data-bind="text: price"></span>);
+<section id="ko-binding-example">
+<h2>Knockout</h2>
+<pre><div class="JavaScript javascript">viewModel.price = ko.observable(<span class="number" data-bind="text: price"></span>);
 ko.bindingHandlers.number = {
     init: <span class="keyword">function</span>(element, valueAccessor) {
         <span class="keyword">var</span> observable = valueAccessor();
@@ -568,6 +572,29 @@ var vm = {
 };
 ko.applyBindings(vm, $('#ko-binding-example')[0]);
 });
+</script>
+</section>
+<section data-markdown>
+<script type="text/template">
+  ## Angular Directive
+
+  ```JavaScript
+  $scope.price = 100;
+  ```
+  
+  ```html
+  <number-input ng-model="price"></number-input>
+  ```
+
+  ## Ember Component
+
+  ```JavaScript
+  controller.set('price', 100);
+  ```
+  
+  ```html
+  {{number-input value=price}}
+  ```  
 </script>
 </section>
 </section>
