@@ -760,24 +760,24 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
           </script>
         </section>
 
-        <section data-markdown>
-          <script type="text/template">
-            ## Services should transform data but not store it
-            ```JavaScript
-            define(function() {
-              var internalState = 0;
-              return {
-                goodMethod: function(input) {
-                  return _(input).pluck('foo').map(function(val) { return 2 * val;});
-                },
-                badMethod: function() {
-                  return ++internalState;
-                }
-              };
-            });
-            ```
-          </script>
-        </section>
+        <!-- <section data-markdown> -->
+        <!--   <script type="text/template"> -->
+        <!--     ## Services should transform data but not store it -->
+        <!--     ```JavaScript -->
+        <!--     define(function() { -->
+        <!--       var internalState = 0; -->
+        <!--       return { -->
+        <!--         goodMethod: function(input) { -->
+        <!--           return _(input).pluck('foo').map(function(val) { return 2 * val;}); -->
+        <!--         }, -->
+        <!--         badMethod: function() { -->
+        <!--           return ++internalState; -->
+        <!--         } -->
+        <!--       }; -->
+        <!--     }); -->
+        <!--     ``` -->
+        <!--   </script> -->
+        <!-- </section> -->
         
         </section>
 
@@ -876,14 +876,25 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
         <section>
         <section data-markdown>
           <script type="text/template">
-            ## Binding Tips
-            - DOM manipulation
-            - jQuery
-            - Event listeners
-            - Wrap existing UI widgets in binding
-                - https://github.com/angular-ui
-                - https://github.com/emberjs-addons
-                - https://github.com/Knockout-Contrib
+            ## Binding Best Practices
+            - Respond to Observable Changes and Update the DOM
+            - Respond to Browser Events and Update the Observables
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Wrap Existing UI Widgets in Binding
+            - https://github.com/angular-ui
+            - https://github.com/emberjs-addons
+            - https://github.com/Knockout-Contrib
+          <aside class="notes">
+            <ul>
+              <li>When transition an old application to a data binding libarary</li>
+              <li>Or just reusing an existing open source widget</li>
+              <li>Most of the work is prolly done for you so google</li>
+            </ul>
+          </aside>
           </script>
         </section>
 
