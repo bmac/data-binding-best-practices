@@ -58,7 +58,7 @@
         </section>
 
         <section>
-          <h2>Where did this talk come from?</h2>
+          <h2>Where Did this Talk Come From?</h2>
           <ul>
             <li>Inventory Tracking for Restaurants - <img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" ></li>
             <li>Inventory Tracking for Ecommerce - <img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> Angular</li>
@@ -71,9 +71,9 @@
           <script type="text/template">
             ## What is Data Binding?
 
-            - Link Data to the UI
-            - Changes to the Data or the DOM are kept in Sync
-            - Relationships are Described with a Declaritive Syntax
+            - Link data to the UI
+            - Changes to the data or the DOM are kept in sync
+            - Relationships are described with a declaritive syntax
 
             ```JavaScript 
             var tickets = [
@@ -99,6 +99,7 @@ You have chosen <b data-bind="text: name"></b>
                 <li>Data is some JavaScript state object</li>
                 <li>In this case the UI is the DOM</li>
                 <li>reduces boilerplate keeping html up to date</li>
+                <li>a way to write dynamic HTML using HTML</li>
                 <li>Not the only way but all the examples here use a template or the dom to describe the relationship between data and the dom</li>
               </ul>
             </aside>
@@ -128,12 +129,13 @@ You have chosen <b data-bind="text: name"></b>
           <h2>I Love Data Binding</h2>
           <ul>
             <li>Great for applications that have complex UI requirements</li>
-            <li class="fragment">Enterprize Apps (Validaton, Worflows)</li>
-            <li class="fragment">Dashboards (Real Time)</li>
-            <li class="fragment">WebRTC (Heavy use of Browser APIs)</li>
-            <li class="fragment">Managing both Touch and Pointer based Interactions</li>
-            <li class="fragment">Complext DOM Manipulation in Response to Data Changes</li>
+            <li class="fragment">Enterprize apps (Validaton, Worflows)</li>
+            <li class="fragment">Dashboards (Real-time)</li>
+            <li class="fragment">WebRTC (Heavy use of browser APIs)</li>
+            <li class="fragment">Managing both touch and pointer based interactions</li>
+            <li class="fragment">Complext DOM manipulation in response to data changes</li>
           </ul>
+          <cite ><a href="https://lh3.ggpht.com/-7ntFFNpikqM/Tx67iYPZTpI/AAAAAAAABaQ/lk1n55zhFls/s1600/i_love_you_cupcake.jpg">https://lh3.ggpht.com/-7ntFFNpikqM/Tx67iYPZTpI/AAAAAAAABaQ/lk1n55zhFls/s1600/i_love_you_cupcake.jpg</a></cite>
           <aside class="notes">
           </aside>
         </section>
@@ -605,7 +607,7 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
         <section data-markdown>
 
           <script type="text/template">
-            ## What does the architecture look like?
+            ## What Does the Architecture Look Like?
 
           </script>
         </section>
@@ -616,18 +618,19 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
             ## Whats Missing?
             - Business/Domain Logic?
               - Services
-            - What sets up the Presentation model and template?
+            - What Sets up the Presentation Model and Template?
               - Router
-            - Where does the data come from?
+            - How is the Data Persisted?
               - Model
           </script>
         </section>
 
 
-        <section data-markdown>
-          <script type="text/template">
-            # Best Practices
-          </script>
+        <section>
+          <h1>Best Practices</h1>
+          <img src="images/dilbert.jpg" class="dilbert">
+          <br>
+          <cite><a href="http://dilbert.com/strips/comic/2008-09-03/">http://dilbert.com/strips/comic/2008-09-03/</a></cite>
         </section>
         <section>
         <section data-markdown>
@@ -640,8 +643,8 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
               - Simple Handlers
             - Bad
               - DOM Manipulation
-              - Perisitance Logic
-              - Ajax/Network logic
+              - Persistence Logic
+              - Ajax/Network Logic
             <aside class="notes">
               <ul>
                 <li>State Lives in JavaScript not the DOM</li>
@@ -717,11 +720,11 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 
         <section data-markdown>
           <script type="text/template">
-            ## Hints that your code should go in a service
-            - Anything that deals with ajax
-            - Transformation of data
-            - Iteration or underscore methods
-            - Managing promises
+            ## Hints that your Code Should go in a Service
+            - Ajax
+            - Transformation of Data
+            - Iteration or Underscore Methods
+            - Managing Promises
             - Facade for 3rd party APIs
           </script>
         </section>
@@ -748,11 +751,10 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
         </section>
 
         <section>
-          <section data-markdown>
-            <script type="text/template">
-              ## Logicless Templates
-              Picture of spock?
-            </script>
+          <section>
+            <h2>Logicless Templates</h2>
+              <img src="images/spock.jpg" class="spock"/>
+              <cite><a href="http://www.calwatchdog.com/wp-content/uploads/2013/05/Spock-logic">http://www.calwatchdog.com/wp-content/uploads/2013/05/Spock-logic</a></cite>
             <aside class="notes">
               <ul>
                 <li>Templates are about describeing the relationship between data and the DOM</li>
@@ -828,7 +830,7 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 
           <section data-markdown>
             <script type="text/template">
-              ## Unless You are using Knockout :(
+              ## Unless You are Using Knockout :(
 
               ```html
               <button data-bind="click: function(vm) {vm.something(foo); }">
@@ -981,26 +983,26 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
 
           <script type="text/template">
             ## Seperation Of Concerns
-            - Presnetation Model is for Data
+            - Presentation Model is for Data
+            - Templats Describe the Relationship Between DOM and Data
             - Bindings for DOM Manipulation and Event Handeling
             - Services for Business Logic
-            - Templates for HTML
           </script>
         </section>
 
         <section data-markdown>
           <script type="text/template">
-            ## Best Stragegy for Loading data
-            - Resolve everything first (simple)
-            - Load a piece at a time (faster perceived performance)
+            ## Best Strategy for Loading Data
+            - Resolve Everything First (simple)
+            - Load a Piece at a Time (Faster Perceived Performance)
           </script>
         </section>
 
         <section data-markdown>
           <script type="text/template">
             ## Use a Module System
-            - Apps are complex
-            - Separate repsonsibilites calls for separate modules
+            - Apps are Complex
+            - Separate Repsonsibilites Calls for Separate Modules
             <aside class="notes">
               <ul>
                 <li>Its really easy to create circular dependencies if you are using all gobals</li>
@@ -1187,7 +1189,7 @@ myModule.directive('numberInput', function () {
 });
 
 function DirectiveExampleController($scope) {
-  $scope.price = 10000000;
+  $scope.price = 100;
   window.$scope = $scope;
 }
 </script>

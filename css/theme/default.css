@@ -220,7 +220,20 @@ pre > div {
     height: 400px
 }
 
-.gir {
+.gir, .dilbert {
     height: 200px;
     border-radius: 20px;
+}
+
+.spock { 
+    height: 400px;
+    border-radius: 20px;
+}
+
+cite {
+    width: 900px;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 75% !important;
 }
