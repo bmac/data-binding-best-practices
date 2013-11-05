@@ -192,7 +192,7 @@ button {
     clear: both;
 }
 
-.hilight {
+.highlight {
     background-color: #ff5e99;
     text: white;
 }
@@ -240,5 +240,5 @@ cite {
     display: block;
     text-overflow: ellipsis;
     overflow: hidden;
-    font-size: 75% !important;
+    font-size: 45% !important;
 }

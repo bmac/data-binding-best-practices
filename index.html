@@ -67,6 +67,24 @@
           </ul>
         </section>
 
+        <section>
+          <img src="images/gir.jpg" class="gir">
+          <h2>I Love Data Binding</h2>
+          <ul>
+            <li>Great for applications that have complex UI requirements</li>
+            <li class="fragment">Enterprize apps (Validaton, Worflows)</li>
+            <li class="fragment">Dashboards (Real-time)</li>
+            <li class="fragment">WebRTC (Heavy use of browser APIs)</li>
+            <li class="fragment">Complext DOM manipulation in response to data changes</li>
+          </ul>
+          <br>
+          <br>
+          <cite ><a href="https://lh3.ggpht.com/-7ntFFNpikqM/Tx67iYPZTpI/AAAAAAAABaQ/lk1n55zhFls/s1600/i_love_you_cupcake.jpg">https://lh3.ggpht.com/-7ntFFNpikqM/Tx67iYPZTpI/AAAAAAAABaQ/lk1n55zhFls/s1600/i_love_you_cupcake.jpg</a></cite>
+          <aside class="notes">
+          </aside>
+        </section>
+
+
         <section data-markdown id="what-is-data-binding">
 
           <script type="text/template">
@@ -124,24 +142,6 @@ You have chosen <b data-bind="text: name"></b>
       }, 1000);
       });
     </script>
-
-        <section>
-          <img src="images/gir.jpg" class="gir">
-          <h2>I Love Data Binding</h2>
-          <ul>
-            <li>Great for applications that have complex UI requirements</li>
-            <li class="fragment">Enterprize apps (Validaton, Worflows)</li>
-            <li class="fragment">Dashboards (Real-time)</li>
-            <li class="fragment">WebRTC (Heavy use of browser APIs)</li>
-            <li class="fragment">Managing both touch and pointer based interactions</li>
-            <li class="fragment">Complext DOM manipulation in response to data changes</li>
-          </ul>
-          <br>
-          <br>
-          <cite ><a href="https://lh3.ggpht.com/-7ntFFNpikqM/Tx67iYPZTpI/AAAAAAAABaQ/lk1n55zhFls/s1600/i_love_you_cupcake.jpg">https://lh3.ggpht.com/-7ntFFNpikqM/Tx67iYPZTpI/AAAAAAAABaQ/lk1n55zhFls/s1600/i_love_you_cupcake.jpg</a></cite>
-          <aside class="notes">
-          </aside>
-        </section>
 
         <section>
           <h2>Data Binding is Not a New Concept</h2>
@@ -233,11 +233,10 @@ You have chosen <b data-bind="text: name"></b>
         <section ng-app="myModule">
 <section ng-controller="Controller">
 <h2>Angular</h2>
-<pre><div class="JavaScript perl">var Controller = function(<span class="variable">$scope</span>) {
+<pre><div class="JavaScript perl">function Controller(<span class="variable">$scope</span>) {
   <span class="variable">$scope</span>.name = <span class="string">'{{name}}'</span>;
   <span class="variable">$scope</span>.<span class="keyword">reset</span> = function() {
-    <span class="variable">$scope</span>.name = <span class="string">'foo'</span>;
-    <span class="variable">$scope</span>.$apply();<span class="comment">// sometimes</span>
+    <span class="variable">$scope</span>.name = <span class="string">'foo'</span>;<!-- <span class="variable">$scope</span>.$apply();<span class="comment">// sometimes</span> -->
   };
   <span class="variable">$scope</span>.<span class="keyword">length</span> = function() {
     <span class="keyword">return</span> <span class="variable">$scope</span>.name.<span class="keyword">length</span>;
@@ -491,7 +490,7 @@ App.NumberInputComponent = Ember.Component.extend({
     <span class="keyword">return</span> <span class="keyword">this</span>.name().length;
     }, <span class="keyword">this</span>);  <span class="comment">// this.length(); => <span data-bind="text: length"></span></span>
 };
-ko.applyBindings(<span class="keyword">new</span> ViewModel());</div></pre>
+</div></pre>
 <pre><div class="html xml"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">data-bind</span>=<span class="value">"value: name, valueUpdate: 'afterkeydown'"</span> <span class="attribute">value</span>=<span class="value">"<span data-bind="text: name"></span>"</span>/&gt;</span>
 <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-bind</span>=<span class="value">"click: reset"</span>&gt;</span>Reset<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
 <span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: name"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span> 
@@ -990,7 +989,7 @@ ko.bindingHandlers[<span class="string">'hasFocus'</span>] = {
         }); <span class="comment">// ...</span></div></pre>
 <pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span> <span class="attribute">data-bind</span>=<span class="value">"css: {'hot-pink': highlight}"</span>&gt;</span>Favorite Fruit:<span class="tag">&lt;/<span class="title">label</span>&gt;</span>
 <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"fruit"</span> <span class="attribute">data-bind</span>=<span class="value">"value: name, hasFocus: inputHasFocus"</span>/&gt;</span></div></pre>
-<p><label data-bind="css: {'highlight': highlight}" class="highlight">Favorite Fruit:</label></p>
+<p><label for="fruit" data-bind="css: {'highlight': highlight}" class="highlight">Favorite Fruit:</label></p>
 <input id="fruit" class="form-control focus-state" data-bind="value: name, hasFocus: inputHasFocus">
 <aside class="notes">
   <ul>
@@ -1039,17 +1038,6 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
                 <li>Bindings are for Responding to a Browser Events</li>
               </ul>
             </aside>
-        </section>
-
-        <section data-markdown>
-
-          <script type="text/template">
-            ## Seperation Of Concerns
-            - Presentation Model is for Data
-            - Templats Describe the Relationship Between DOM and Data
-            - Bindings for DOM Manipulation and Event Handeling
-            - Services for Business Logic
-          </script>
         </section>
 
         <!-- <section data-markdown> -->
@@ -1176,24 +1164,36 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
         <!-- </section> -->
 
         <section data-markdown>
+
           <script type="text/template">
             ## Conclusion
-            - State goes in the Presenattion Model
-            - Use Bindings to expose state to the Presentation model
-            - Manipulate Data not the DOM
-            - Embrace Declaritive Syntax
-            <aside class="notes">
-              <ul>
-                <li>Good for us as developers because we can take the design skills with us from one project to another</li>
-                <li>As we've seen happen in the server MVC space</li>
-                <li>I've glossed over a lot of the differneces between these frameworks</li>
-                <li>Besides obvious API differences these frameworks ofter have made different trade offs under the hood</li>
-                <li>In terms of performance, developer usability and </li>
-                <li>Marius Gundersen JS Conf EU talks about some of the tradeoffs</li>
-              </ul>
-            </aside>
+            - Presentation Model is for Data
+            - Services for Business Logic
+            - Templats Describe the Relationship Between DOM and Data
+            - Bindings for DOM Manipulation and Event Handeling
           </script>
         </section>
+
+
+        <!-- <section data-markdown> -->
+        <!--   <script type="text/template"> -->
+        <!--     ## Conclusion -->
+        <!--     - State goes in the Presenattion Model -->
+        <!--     - Use Bindings to expose state to the Presentation model -->
+        <!--     - Manipulate Data not the DOM -->
+        <!--     - Embrace Declaritive Syntax -->
+        <!--     <aside class="notes"> -->
+        <!--       <ul> -->
+        <!--         <li>Good for us as developers because we can take the design skills with us from one project to another</li> -->
+        <!--         <li>As we've seen happen in the server MVC space</li> -->
+        <!--         <li>I've glossed over a lot of the differneces between these frameworks</li> -->
+        <!--         <li>Besides obvious API differences these frameworks ofter have made different trade offs under the hood</li> -->
+        <!--         <li>In terms of performance, developer usability and </li> -->
+        <!--         <li>Marius Gundersen JS Conf EU talks about some of the tradeoffs</li> -->
+        <!--       </ul> -->
+        <!--     </aside> -->
+        <!--   </script> -->
+        <!-- </section> -->
 
         <section data-markdown>
           <script type="text/template">
