@@ -608,18 +608,12 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
             <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Controller </li>
             <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > View Model</li>
           </ul>
+          <aside class="notes">
+            <ul>
+              <li>Should contain all the state of the application</li>
+              <li>Not just the state that should be persisted</li>
+          </aside>
         </section>
-
-        <section>
-          <h2>Template</h2>
-          <p>Describes the Relationship Between State and the DOM</p>
-          <ul>
-            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> HTML </li>
-            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Handlebars </li>
-            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > HTML</li>
-          </ul>
-        </section>
-
 
         <section>
           <h2>Binding</h2>
@@ -631,6 +625,22 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
             <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Components </li>
             <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > Binding</li>
           </ul>
+        </section>
+
+
+        <section>
+          <h2>Template</h2>
+          <p>Describes the Relationship Between State and the DOM</p>
+          <ul>
+            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> HTML </li>
+            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Handlebars </li>
+            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > HTML</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Presentation Model doesn't know about the bindings</li>
+              <li>Bindings don't know about the presentation model</li>
+          </aside>
         </section>
 
         <section data-markdown>
@@ -674,7 +684,7 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
               - Simple Handlers
             - Bad
               - DOM Manipulation
-              - Persistence Logic
+              - Business Logic
               - Ajax/Network Logic
             <aside class="notes">
               <ul>
@@ -695,7 +705,7 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
             App.StateController = Ember.ObjectController.extend({
               actions: {
                 toggleEdit: function() { // Simple Event Handler
-                  this.tiggleProperty('edit')
+                  this.toggleProperty(editing')
                 },
                 save: function() { // Delegate complex logic to services
                   localStorageService.save(this.get('model'));
@@ -735,6 +745,14 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
               }
             };
             ```
+            <aside class="notes">
+              <ul>
+                <li>Many times your arragement of state is specific to the screen</li>
+                <li>In general Presentation models are not very reusable</li>
+                <li>You want to move reusable logic out of the presentation model</li>
+              </ul>
+            </aside>
+                
           </script>
         </section>
         </section>
@@ -1158,8 +1176,10 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
         <section data-markdown>
           <script type="text/template">
             ## Conclusion
-            - Converging on the same pattern
-            - Under the hood there are different tradoffs
+            - State goes in the Presenattion Model
+            - Use Bindings to expose state to the Presentation model
+            - Manipulate Data not the DOM
+            - Embrace Declaritive Syntax
             <aside class="notes">
               <ul>
                 <li>Good for us as developers because we can take the design skills with us from one project to another</li>
