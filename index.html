@@ -94,18 +94,18 @@
             - Changes to the data or the DOM are kept in sync
             - Relationships are described with a declaritive syntax
 
-            ```JavaScript 
-            var tickets = [
-                { name: "Economy", price: 199.95 },
-                { name: "Business", price: 449.22 },
-                { name: "First Class", price: 1199.99 }
-            ];
-            ```
+<pre><div class="JavaScript cs" data-bind="editableText: tickets" contenteditable>[
+    { <span class="string">"name"</span>: <span class="string">"Economy"</span>, <span class="string">"price"</span>: <span class="number">199.95</span> },
+    { <span class="string">"name"</span>: <span class="string">"Business"</span>, <span class="string">"price"</span>: <span class="number">449.22</span> },
+    { <span class="string">"name"</span>: <span class="string">"First Class"</span>, <span class="string">"price"</span>: <span class="number">1199.99</span> }
+]
+</div></pre>
+
+
 
 <p>
 Choose a ticket class:
 <select class="form-control" data-bind="options: tickets, 
-                       optionsCaption: 'Choose...',
                        optionsText: 'name',
                        value: chosenTicket"></select>
 </p>                   
@@ -127,12 +127,21 @@ You have chosen <b data-bind="text: name"></b>
 
     <script type="text/javascript">
       $(function() {
+ko.bindingHandlers.editableText = {
+    init: function(element, valueAccessor) {
+        $(element).on('keyup', function() {
+            var observable = valueAccessor();
+            console.log($(this).text());
+            observable( JSON.parse($(this).text()) );
+        });
+    }   
+};
         function TicketsViewModel() {
-            this.tickets = [
+            this.tickets = ko.observable([
                 { name: "Economy", price: 199.95 },
                 { name: "Business", price: 449.22 },
                 { name: "First Class", price: 1199.99 }
-            ];
+            ]);
             this.chosenTicket = ko.observable();
             this.resetTicket = function() { this.chosenTicket(null) }
         }
