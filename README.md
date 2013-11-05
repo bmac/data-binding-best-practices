@@ -186,6 +186,8 @@ Template (DOM)
   - learn how to think about manipulating data and not the dom
 - Client side only
   - Google?
+  - services?
+  - asdf
 
 Backbone does all that!
 - backbone does provide good patterns and observing hooks
