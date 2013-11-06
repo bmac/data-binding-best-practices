@@ -213,6 +213,38 @@ ko.bindingHandlers.editableText = {
           </script>
         </section>
 
+        <section>
+          <h2>Presentation Model</h2>
+          <p>Source of Truth for Application State</p>
+          <ul>
+            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> $scope </li>
+            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Controller </li>
+            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > View Model</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Should contain all the state of the application</li>
+              <li>Not just the state that should be persisted</li>
+          </aside>
+        </section>
+
+
+         <section>
+          <h2>Template</h2>
+          <p>Describes the Relationship Between State and the DOM</p>
+          <ul>
+            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> HTML </li>
+            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Handlebars </li>
+            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > HTML</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Presentation Model doesn't know about the bindings</li>
+              <li>Bindings don't know about the presentation model</li>
+          </aside>
+        </section>
+
+
         <!-- <section data-markdown> -->
         <!--   <script type="text/template"> -->
         <!--     ## How do you data bind? Angular -->
@@ -244,16 +276,16 @@ ko.bindingHandlers.editableText = {
 <h2>Angular</h2>
 <pre><div class="JavaScript perl">function Controller(<span class="variable">$scope</span>) {
   <span class="variable">$scope</span>.name = <span class="string">'{{name}}'</span>;
-  <span class="variable">$scope</span>.<span class="keyword">reset</span> = function() {
-    <span class="variable">$scope</span>.name = <span class="string">'foo'</span>;<!-- <span class="variable">$scope</span>.$apply();<span class="comment">// sometimes</span> -->
-  };
   <span class="variable">$scope</span>.<span class="keyword">length</span> = function() {
     <span class="keyword">return</span> <span class="variable">$scope</span>.name.<span class="keyword">length</span>;
   };  <span class="comment">// this.length(); => {{ length() }}</span>
+  <span class="variable">$scope</span>.<span class="keyword">reset</span> = function() {
+    <span class="variable">$scope</span>.name = <span class="string">'foo'</span>;<!-- <span class="variable">$scope</span>.$apply();<span class="comment">// sometimes</span> -->
+  };
 };</div></pre>
 <pre><div class="html xml"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">ng-model</span>=<span class="value">"name"</span> <span class="attribute">value</span>=<span class="value">"{{name}}"</span>/&gt;</span>
 <span class="tag">&lt;<span class="title">button</span> <span class="attribute">ng-click</span>=<span class="value">"reset()"</span>&gt;</span>Reset<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-<span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: {<span>{</span>name}} Name Length: {<span>{</span>length()}} <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
+<span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: {<span>{</span>name}}   Length: {<span>{</span>length()}} <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
 <p><input class="form-control" ng-model="name" value="foo"><button ng-click="reset()">Reset</button></p>
 <div>Name: {{name}} &nbsp;&nbsp;&nbsp; Length: {{length()}} </div>
 <script>
@@ -367,15 +399,15 @@ $(function() {
       }
   });
   AppOne.ExampleController = Ember.ObjectController.extend({
+     name: 'foo',
+     length: function() {
+       return this.get('name').length;
+      }.property('name'),
     actions: {
       reset: function() {
         this.set('name', 'foo');
        }
      },
-     name: 'foo',
-     length: function() {
-       return this.get('name').length;
-      }.property('name') 
     });
 });
 $(function() {
@@ -415,19 +447,19 @@ $(function() {
   <script type="text/x-handlebars" data-template-name="example">
 <h2>Ember</h2>
 <pre><div class="JavaScript actionscript"><span class="keyword">var</span> ExampleController = Ember.ObjectController.extend({
+  name: <span class="string">'{{ name }}'</span>,
+  length: <span class="keyword">function</span>() { 
+    <span class="keyword">return</span> <span class="keyword">this</span>.<span class="keyword">get</span>(<span class="string">'name'</span>).length;
+  }.property(<span class="string">'name'</span>), <span class="comment">// this.get('length'); => {{ length }}</span>
   actions: {
     reset: <span class="keyword">function</span>() {
       <span class="keyword">this</span>.<span class="keyword">set</span>(<span class="string">'name'</span>, <span class="string">'foo'</span>);
     }
-  },
-  name: <span class="string">'{{ name }}'</span>,
-  length: <span class="keyword">function</span>() { 
-    <span class="keyword">return</span> <span class="keyword">this</span>.<span class="keyword">get</span>(<span class="string">'name'</span>).length;
-  }.property(<span class="string">'name'</span>) <span class="comment">// this.get('length'); => {{ length }}</span>
+  }
 };</div></pre>
 <pre><div class="html xml">{<span>{</span>input value=name }}
 <span class="tag">&lt;<span class="title">button</span> {<span>{</span><span class="attribute">action</span> '<span class="attribute">reset</span>'}}&gt;</span>Reset<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-<span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: {<span>{</span> name }} Name Length: {<span>{</span> length }}<span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
+<span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: {<span>{</span> name }}   Length: {<span>{</span> length }}<span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
 {{input class="form-control" value=name }}
 <button {{action 'reset'}}>Reset</button>
 <div>Name: {{ name }} &nbsp;&nbsp;&nbsp; Length: {{ length }}</div>
@@ -492,18 +524,18 @@ App.NumberInputComponent = Ember.Component.extend({
 <h2>Knockout</h2>
 <pre><div class="JavaScript javascript"><span class="keyword">var</span> ViewModel = <span class="keyword">function</span>() {
   <span class="keyword">this</span>.name = ko.observable(<span class="string">'<span data-bind="text: name"></span>'</span>);
+  <span class="keyword">this</span>.length = ko.computed(<span class="keyword">function</span>() {
+    <span class="keyword">return</span> <span class="keyword">this</span>.name().length;
+  }, <span class="keyword">this</span>);  <span class="comment">// this.length(); => <span data-bind="text: length"></span></span>
   <span class="keyword">this</span>.reset = <span class="keyword">function</span>() {
     <span class="keyword">this</span>.name(<span class="string">'foo'</span>);
   };
-  <span class="keyword">this</span>.length = ko.computed(<span class="keyword">function</span>() {
-    <span class="keyword">return</span> <span class="keyword">this</span>.name().length;
-    }, <span class="keyword">this</span>);  <span class="comment">// this.length(); => <span data-bind="text: length"></span></span>
 };
 </div></pre>
 <pre><div class="html xml"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">data-bind</span>=<span class="value">"value: name, valueUpdate: 'afterkeydown'"</span> <span class="attribute">value</span>=<span class="value">"<span data-bind="text: name"></span>"</span>/&gt;</span>
 <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-bind</span>=<span class="value">"click: reset"</span>&gt;</span>Reset<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
 <span class="tag">&lt;<span class="title">div</span>&gt;</span>Name: <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: name"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span> 
-Name Length: <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: length"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
+  Length: <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: length"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre>
 <p><input class="form-control" data-bind="value: name, valueUpdate: 'afterkeydown'" value="foo"><button data-bind="click: reset">Reset</button></p>
 <div>Name: <span data-bind="text: name"></span> &nbsp;&nbsp;&nbsp; Length: <span data-bind="text: length"></span></div>
 <script>
@@ -609,22 +641,6 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 </section>
 </section>
 
-
-        <section>
-          <h2>Presentation Model</h2>
-          <p>Source of Truth for Application State</p>
-          <ul>
-            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> $scope </li>
-            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Controller </li>
-            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > View Model</li>
-          </ul>
-          <aside class="notes">
-            <ul>
-              <li>Should contain all the state of the application</li>
-              <li>Not just the state that should be persisted</li>
-          </aside>
-        </section>
-
         <section>
           <h2>Binding</h2>
           <p>Update the DOM to Reflect the Presentation Model</p>
@@ -635,22 +651,6 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
             <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Components </li>
             <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > Binding</li>
           </ul>
-        </section>
-
-
-        <section>
-          <h2>Template</h2>
-          <p>Describes the Relationship Between State and the DOM</p>
-          <ul>
-            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> HTML </li>
-            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Handlebars </li>
-            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > HTML</li>
-          </ul>
-          <aside class="notes">
-            <ul>
-              <li>Presentation Model doesn't know about the bindings</li>
-              <li>Bindings don't know about the presentation model</li>
-          </aside>
         </section>
 
         <section data-markdown>
