@@ -641,27 +641,15 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 </section>
 </section>
 
-        <section>
-          <h2>Binding</h2>
-          <p>Update the DOM to Reflect the Presentation Model</p>
-          <p>Translates DOM Events into Application Actions</p>
+        <!-- <section data-markdown> -->
 
-          <ul>
-            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> Directives </li>
-            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Components </li>
-            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > Binding</li>
-          </ul>
-        </section>
-
-        <section data-markdown>
-
-          <script type="text/template">
-            ## What Does the Architecture Look Like?
+        <!--   <script type="text/template"> -->
+        <!--     ## What Does the Architecture Look Like? -->
             
-            <img src="images/arch.png" class="arch">
+        <!--     <img src="images/arch.png" class="arch"> -->
 
-          </script>
-        </section>
+        <!--   </script> -->
+        <!-- </section> -->
 
         <!-- <section data-markdown> -->
 
@@ -677,12 +665,6 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
         <!-- </section> -->
 
 
-        <section>
-          <h1>Best Practices</h1>
-          <img src="images/dilbert.jpg" class="dilbert">
-          <br>
-          <cite><a href="http://dilbert.com/strips/comic/2008-09-03/">http://dilbert.com/strips/comic/2008-09-03/</a></cite>
-        </section>
         <section>
         <section data-markdown>
 
@@ -902,9 +884,42 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
         </section>
 
         <section>
+          <h2>Keep Presentation Logic Close to the DOM</h2>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span>Order Date: {{purchaseOrder.createdAt | date:'MM/dd/yyyy'}}<span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span>Order Date: {{date purchaseOrder.createdAt 'MM/DD/YYYY'}}<span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span>Order Date: 
+  <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: fmt.date(purchaseOrder.createdAt, 'MM/DD/YYYY')"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
+
+          <ul>
+            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> Angular Filters </li>
+            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Handlebars Helpers </li>
+            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > Knockout</li>
+          </ul>
+            <aside class="notes">
+              <ul>
+                <li>Keep Data in a Form that is easy to manipulate</li>
+                <li>Bindings are for Responding to a Browser Events</li>
+              </ul>
+            </aside>
+        </section>
+
+        <section>
+          <h2>Binding</h2>
+          <p>Update the DOM to Reflect the Presentation Model</p>
+          <p>Translates DOM Events into Application Actions</p>
+
+          <ul>
+            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> Directives </li>
+            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Components </li>
+            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > Binding</li>
+          </ul>
+        </section>
+
+        <section>
         <section data-markdown>
           <script type="text/template">
-            ## Binding Best Practices
+            ## Bindings
             - Respond to Observable Changes and Update the DOM
             - Respond to Browser Events and Update the Observables
           </script>
@@ -913,16 +928,17 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
         <section data-markdown>
           <script type="text/template">
             ## Wrap Existing UI Widgets in Binding
-            - https://github.com/angular-ui
-            - https://github.com/emberjs-addons
-            - https://github.com/Knockout-Contrib
-          <aside class="notes">
-            <ul>
-              <li>When transition an old application to a data binding libarary</li>
-              <li>Or just reusing an existing open source widget</li>
-              <li>Most of the work is prolly done for you so google</li>
-            </ul>
-          </aside>
+            - Do not initialize widgets from a Presentaion Model
+            - Think about what state you may need to expose
+            - Look for open canonical open source implementations
+            
+<aside class="notes">
+  <ul>
+    <li>When transition an old application to a data binding libarary</li>
+    <li>Or just reusing an existing open source widget</li>
+    <li>Most of the work is prolly done for you so google</li>
+  </ul>
+</aside>
           </script>
         </section>
 
@@ -1032,26 +1048,6 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
 </script>
         </section>
 
-        <section>
-          <h2>Keep Presentation Logic Close to the DOM</h2>
-<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span>Order Date: {{purchaseOrder.createdAt | date:'MM/dd/yyyy'}}<span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
-<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span>Order Date: {{date purchaseOrder.createdAt 'MM/DD/YYYY'}}<span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
-<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span>Order Date: 
-  <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-bind</span>=<span class="value">"text: fmt.date(purchaseOrder.createdAt, 'MM/DD/YYYY')"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
-
-          <ul>
-            <li><img src="images/angularjs-logo.png" alt="Angular Logo" height="50em" class="logo"> Angular Filters </li>
-            <li><img src="images/emberjs-logo.png" alt="Ember Logo" height="50em" class="logo"> Handlebars Helpers </li>
-            <li><img src="images/ko-logo.png" alt="Knockout Logo" height="50em" class="logo" > Knockout</li>
-          </ul>
-            <aside class="notes">
-              <ul>
-                <li>Keep Data in a Form that is easy to manipulate</li>
-                <li>Bindings are for Responding to a Browser Events</li>
-              </ul>
-            </aside>
-        </section>
 
         <!-- <section data-markdown> -->
         <!--   <script type="text/template"> -->
@@ -1093,10 +1089,28 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
 
             - Test Seperatly
 
+            - Test 
+
 <br>
 <br>
 <cite ><a href="http://unbounce.com/photos/3-ab-testing-variations.png">http://unbounce.com/photos/3-ab-testing-variations.png</a></cite>
+          </script>          
+        </section>
+        
+        <section data-markdown>
+          <script type="text/template">
+            ## Angular
+<pre><div class="JavaScript php">it(<span class="string">"should get the date from the model"</span>, inject(function(<span class="variable">$compile</span>, <span class="variable">$rootScope</span>) {
+
+    <span class="keyword">var</span> aDate = <span class="variable">$rootScope</span>.x = <span class="keyword">new</span> Date(<span class="number">2010</span>, <span class="number">12</span>, <span class="number">1</span>);
+
+    <span class="keyword">var</span> element = $compile("<span class="tag">&lt;<span class="title">ui-date</span> <span class="attribute">ng-model</span>=<span class="value">'x'</span>&gt;</span><span class="tag">&lt;/<span class="title">ui-date</span>&gt;</span>")($rootScope);
+
+    expect(element.datepicker(<span class="string">'getDate'</span>)).toEqual(aDate);
+
+}));</div></pre>
           </script>
+
         </section>
 
         <!-- <section> -->
