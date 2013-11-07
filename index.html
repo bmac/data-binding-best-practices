@@ -578,67 +578,44 @@ $(function() {
 
 <!--           </script> -->
 <!-- </section> -->
-<section id="ko-binding-example">
-<h2>Knockout</h2>
-<pre><div class="JavaScript javascript">viewModel.price = ko.observable(<span class="number" data-bind="text: price"></span>);
-ko.bindingHandlers.number = {
-    init: <span class="keyword">function</span>(element, valueAccessor) {
-        <span class="keyword">var</span> observable = valueAccessor();
-        element.addEventListener(<span class="string">'blur'</span>, <span class="keyword">function</span>() {
-           <span class="keyword">var</span> number = parseInt(element.value.replace(<span class="regexp">/,/g</span>, <span class="string">''</span>), <span class="number">10</span>);
-           observable(number);
-        });
-    },
-    update: <span class="keyword">function</span>(element, valueAccessor) {
-        <span class="keyword">var</span> number = ko.unwrap(valueAccessor());
-        element.value = number.toLocaleString();
-    }};</div></pre>
-<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span> Price: <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">data-bind</span>=<span class="value">"number: price"</span> /&gt;</span><span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
-<label> Price: <input type="text" class="form-control" data-bind="number: price"></label>
-<script>
-$(function() {
-ko.bindingHandlers.number = {
-    init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        var observable = valueAccessor();
-        element.addEventListener('change', function() {
-           var number = parseInt(element.value.replace(/,/g, ''), 10);
-           observable(number);
-        });
-    },
-    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
-        var number = ko.unwrap(valueAccessor());
-        element.value = number.toLocaleString();
-    }};
-var vm = {
-  price: ko.observable(100)
-};
-ko.applyBindings(vm, $('#ko-binding-example')[0]);
-});
-</script>
-</section>
-<section data-markdown>
-<script type="text/template">
-  ## Angular Directive
-
-  ```JavaScript
-  $scope.price = 100;
-  ```
-  
-  ```html
-  <number-input ng-model="price"></number-input>
-  ```
-
-  ## Ember Component
-
-  ```JavaScript
-  controller.set('price', 100);
-  ```
-  
-  ```html
-  {{number-input value=price}}
-  ```  
-</script>
-</section>
+<!-- <section id="ko-binding-example"> -->
+<!-- <h2>Knockout</h2> -->
+<!-- <pre><div class="JavaScript javascript">viewModel.price = ko.observable(<span class="number" data-bind="text: price"></span>); -->
+<!-- ko.bindingHandlers.number = { -->
+<!--     init: <span class="keyword">function</span>(element, valueAccessor) { -->
+<!--         <span class="keyword">var</span> observable = valueAccessor(); -->
+<!--         element.addEventListener(<span class="string">'blur'</span>, <span class="keyword">function</span>() { -->
+<!--            <span class="keyword">var</span> number = parseInt(element.value.replace(<span class="regexp">/,/g</span>, <span class="string">''</span>), <span class="number">10</span>); -->
+<!--            observable(number); -->
+<!--         }); -->
+<!--     }, -->
+<!--     update: <span class="keyword">function</span>(element, valueAccessor) { -->
+<!--         <span class="keyword">var</span> number = ko.unwrap(valueAccessor()); -->
+<!--         element.value = number.toLocaleString(); -->
+<!--     }};</div></pre> -->
+<!-- <pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span> Price: <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">data-bind</span>=<span class="value">"number: price"</span> /&gt;</span><span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre> -->
+<!-- <label> Price: <input type="text" class="form-control" data-bind="number: price"></label> -->
+<!-- <script> -->
+<!-- $(function() { -->
+<!-- ko.bindingHandlers.number = { -->
+<!--     init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) { -->
+<!--         var observable = valueAccessor(); -->
+<!--         element.addEventListener('change', function() { -->
+<!--            var number = parseInt(element.value.replace(/,/g, ''), 10); -->
+<!--            observable(number); -->
+<!--         }); -->
+<!--     }, -->
+<!--     update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) { -->
+<!--         var number = ko.unwrap(valueAccessor()); -->
+<!--         element.value = number.toLocaleString(); -->
+<!--     }}; -->
+<!-- var vm = { -->
+<!--   price: ko.observable(100) -->
+<!-- }; -->
+<!-- ko.applyBindings(vm, $('#ko-binding-example')[0]); -->
+<!-- }); -->
+<!-- </script> -->
+<!-- </section> -->
 </section>
 
         <!-- <section data-markdown> -->
@@ -916,6 +893,70 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
           </ul>
         </section>
 
+<section>
+<section id="ko-binding-example">
+<h2>Knockout</h2>
+<pre><div class="JavaScript javascript">viewModel.price = ko.observable(<span class="number" data-bind="text: price"></span>);
+ko.bindingHandlers.number = {
+    init: <span class="keyword">function</span>(element, valueAccessor) {
+        <span class="keyword">var</span> observable = valueAccessor();
+        element.addEventListener(<span class="string">'blur'</span>, <span class="keyword">function</span>() {
+           <span class="keyword">var</span> number = parseInt(element.value.replace(<span class="regexp">/,/g</span>, <span class="string">''</span>), <span class="number">10</span>);
+           observable(number);
+        });
+    },
+    update: <span class="keyword">function</span>(element, valueAccessor) {
+        <span class="keyword">var</span> number = ko.unwrap(valueAccessor());
+        element.value = number.toLocaleString();
+    }};</div></pre>
+<pre><div class="html xml"><span class="tag">&lt;<span class="title">label</span>&gt;</span> Price: <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">data-bind</span>=<span class="value">"number: price"</span> /&gt;</span><span class="tag">&lt;/<span class="title">label</span>&gt;</span></div></pre>
+<label> Price: <input type="text" class="form-control" data-bind="number: price"></label>
+<script>
+$(function() {
+ko.bindingHandlers.number = {
+    init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var observable = valueAccessor();
+        element.addEventListener('change', function() {
+           var number = parseInt(element.value.replace(/,/g, ''), 10);
+           observable(number);
+        });
+    },
+    update: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var number = ko.unwrap(valueAccessor());
+        element.value = number.toLocaleString();
+    }};
+var vm = {
+  price: ko.observable(100)
+};
+ko.applyBindings(vm, $('#ko-binding-example')[0]);
+});
+</script>
+</section>
+<section data-markdown>
+<script type="text/template">
+  ## Angular Directive
+
+  ```JavaScript
+  $scope.price = 100;
+  ```
+  
+  ```html
+  <number-input ng-model="price"></number-input>
+  ```
+
+  ## Ember Component
+
+  ```JavaScript
+  controller.set('price', 100);
+  ```
+  
+  ```html
+  {{number-input value=price}}
+  ```  
+</script>
+</section>
+</section>
+
         <section>
         <section data-markdown>
           <script type="text/template">
@@ -944,21 +985,24 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
 
         <section data-markdown>
           <script type="text/template">
-            ## Always Traverse Down the DOM Tree
+            ## Go to War with the Element you Have
+            ### Not the Element You Might Want...
 
-            #### Good
-            ```JavaScript
-            link: function($scope, element, attrs, modelCtrl) {
-              $(element).datepicker();
-            } //...
-            ```
+            ### Good
+<pre><div class="JavaScript javascript">init: <span class="keyword">function</span>(element, valueAccessor) {
+  $(element).datepicker();
+}</div></pre>
 
-            #### Bad
+            ### Bad
             ```JavaScript
-            link: function($scope, element, attrs, modelCtrl) {
-              element.parent().find('.placeholder').click(function() {
-                 element.parent().find('.placeholder').hide();
-              } // ...
+            init: function(element, valueAccessor) {
+              element.addEventListener('focus', function() {
+                $('label').addClass('hot-pink');
+              });
+              element.addEventListener('blur', function() {
+                $('label').removeClass('hot-pink');
+              });
+            }
             ```
 
           </script>
