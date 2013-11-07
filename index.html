@@ -72,10 +72,10 @@
           <h2>I Love Data Binding</h2>
           <ul>
             <li>Great for applications that have complex UI requirements</li>
-            <li class="fragment">Enterprize apps (Validaton, Worflows)</li>
+            <li class="fragment">Enterprise apps (Validation, Workflows)</li>
             <li class="fragment">Dashboards (Real-time)</li>
             <li class="fragment">WebRTC (Heavy use of browser APIs)</li>
-            <li class="fragment">Complext DOM manipulation in response to data changes</li>
+            <li class="fragment">Complex DOM manipulation in response to data changes</li>
           </ul>
           <br>
           <br>
@@ -92,7 +92,7 @@
 
             - Link data to the UI
             - Changes to the data or the DOM are kept in sync
-            - Relationships are described with a declaritive syntax
+            - Relationships are described with a declarative syntax
 
 <pre><div class="JavaScript cs" data-bind="editableText: tickets" contenteditable>[
     { <span class="string">"name"</span>: <span class="string">"Economy"</span>, <span class="string">"price"</span>: <span class="number">199.95</span> },
@@ -185,7 +185,7 @@ ko.bindingHandlers.editableText = {
           </ul>
            <aside class="notes">
               <ul>
-                <li>Reletivly recent</li>
+                <li>Relatively recent</li>
                 <li>We've had some time to shake out the bugs</li>
                 <li>Browsers are getting faster</li>
                 <li>Network requests are still slow</li>
@@ -730,7 +730,7 @@ $(function() {
         <section>
         <section data-markdown>
           <script type="text/template">
-            ## Business Logic Belongs in Serivces
+            ## Business Logic Belongs in Services
             - Work with JavaScript Objects not the DOM
             - Reusable
             - Testable
@@ -776,9 +776,9 @@ $(function() {
               <cite><a href="http://www.calwatchdog.com/wp-content/uploads/2013/05/Spock-logic">http://www.calwatchdog.com/wp-content/uploads/2013/05/Spock-logic</a></cite>
             <aside class="notes">
               <ul>
-                <li>Templates are about describeing the relationship between data and the DOM</li>
-                <li>You really want to keep logic in the presentaion model</li>
-                <li>If you find your self wanting to add logic to the template your probabally want to use a computed property</li>
+                <li>Templates are about describing the relationship between data and the DOM</li>
+                <li>You really want to keep logic in the presentation model</li>
+                <li>If you find yourself wanting to add logic to the template you probably want to use a computed property</li>
               </ul>
             </aside>
           </section>
@@ -970,7 +970,7 @@ ko.applyBindings(vm, $('#ko-binding-example')[0]);
         <section data-markdown>
           <script type="text/template">
             ## Wrap Existing UI Widgets in Binding
-            - Do not initialize widgets from a Presentaion Model
+            - Do not initialize widgets from a Presentation Model
             - Think about what state you may need to expose
             - Look for open canonical open source implementations
 
@@ -1110,7 +1110,7 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
 <br>
 
             - Apps are Complex
-            - Separate Repsonsibilites Calls for Separate Modules
+            - Separate Responsibilities Calls for Separate Modules
 
 <br>
 <cite ><a href="https://upload.wikimedia.org/wikipedia/commons/4/43/Apollo_10_Command_Module_1.jpg">https://upload.wikimedia.org/wikipedia/commons/4/43/Apollo_10_Command_Module_1.jpg</a></cite>
@@ -1132,7 +1132,7 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
             <img src="images/testing.png" class="testing">
             <br>
 
-            - Test Seperatly
+            - Test Separately
 
 <br>
 <br>
@@ -1241,7 +1241,7 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
             - Presentation Model is for Data
             - Services for Business Logic
             - Templates Describe the Relationship Between DOM and Data
-            - Bindings for DOM Manipulation and Event Handeling
+            - Bindings for DOM Manipulation and Event Handling
           </script>
         </section>
 
