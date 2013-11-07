@@ -674,7 +674,7 @@ $(function() {
             App.StateController = Ember.ObjectController.extend({
               actions: {
                 toggleEdit: function() { // Simple Event Handler
-                  this.toggleProperty(editing')
+                  this.toggleProperty('editing')
                 },
                 save: function() { // Delegate complex logic to services
                   localStorageService.save(this.get('model'));
