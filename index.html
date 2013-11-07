@@ -687,6 +687,7 @@ $(function() {
                 var lastName = this.get('author.lastName');
                 return firstName + ' ' + lastName;
               }.property('author.firstName', 'author.lastName')
+            });
             ```
           </script>
         </section>
@@ -1133,29 +1134,27 @@ ko.applyBindings(new VM(), $('#focusState')[0]);
 
             - Test Seperatly
 
-            - Test 
-
 <br>
 <br>
 <cite ><a href="http://unbounce.com/photos/3-ab-testing-variations.png">http://unbounce.com/photos/3-ab-testing-variations.png</a></cite>
           </script>          
         </section>
         
-        <section data-markdown>
-          <script type="text/template">
-            ## Angular
-<pre><div class="JavaScript php">it(<span class="string">"should get the date from the model"</span>, inject(function(<span class="variable">$compile</span>, <span class="variable">$rootScope</span>) {
+<!--         <section data-markdown> -->
+<!--           <script type="text/template"> -->
+<!--             ## Angular -->
+<!-- <pre><div class="JavaScript php">it(<span class="string">"should get the date from the model"</span>, inject(function(<span class="variable">$compile</span>, <span class="variable">$rootScope</span>) { -->
 
-    <span class="keyword">var</span> aDate = <span class="variable">$rootScope</span>.x = <span class="keyword">new</span> Date(<span class="number">2010</span>, <span class="number">12</span>, <span class="number">1</span>);
+<!--     <span class="keyword">var</span> aDate = <span class="variable">$rootScope</span>.x = <span class="keyword">new</span> Date(<span class="number">2010</span>, <span class="number">12</span>, <span class="number">1</span>); -->
 
-    <span class="keyword">var</span> element = $compile("<span class="tag">&lt;<span class="title">ui-date</span> <span class="attribute">ng-model</span>=<span class="value">'x'</span>&gt;</span><span class="tag">&lt;/<span class="title">ui-date</span>&gt;</span>")($rootScope);
+<!--     <span class="keyword">var</span> element = $compile("<span class="tag">&lt;<span class="title">ui-date</span> <span class="attribute">ng-model</span>=<span class="value">'x'</span>&gt;</span><span class="tag">&lt;/<span class="title">ui-date</span>&gt;</span>")($rootScope); -->
 
-    expect(element.datepicker(<span class="string">'getDate'</span>)).toEqual(aDate);
+<!--     expect(element.datepicker(<span class="string">'getDate'</span>)).toEqual(aDate); -->
 
-}));</div></pre>
-          </script>
+<!-- }));</div></pre> -->
+<!--           </script> -->
 
-        </section>
+<!--         </section> -->
 
         <!-- <section> -->
         <!--   <h2>Concerns</h2> -->
